@@ -1,7 +1,7 @@
 {
   "name": "react_plateforme_paiement",
   "version": "1.0.0",
-  "description": "",
+  "description": "project node",
   "main": "server.js",
   "scripts": {
     "watch": "nodemon server.js",
@@ -21,5 +21,13 @@
     "express": "^4.17.1",
     "mongoose": "^5.12.14",
     "sequelize": "^6.6.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.29.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0"
   }
 }
