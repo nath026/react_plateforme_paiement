@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 
 const express = require('express');
-
+const TraderRouter = require("./routes/TraderRouter");
 const app = express();
 
 // app.set('views', `${__dirname}/views`);
@@ -16,5 +16,7 @@ app.post('/', (req, res) => {
 app.post('/transactions', (req, res) => {
   res.status(201).json(req.body);
 });
+
+app.use("/traders", TraderRouter);
 
 app.listen(process.env.PORT || 3000, () => console.log('server is listening'));
