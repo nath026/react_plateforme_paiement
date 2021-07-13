@@ -1,11 +1,20 @@
 /* eslint-disable no-console */
+
 const express = require('express');
-const UserRouter = require('./routes/UserRouter');
 
 const app = express();
 
-app.use(express.json());
+// app.set('views', `${__dirname}/views`);
 
-app.use('/users', UserRouter);
+app.use(express.json());
+app.use(express.urlencoded());
+
+app.post('/', (req, res) => {
+  res.sendStatus(200);
+});
+
+app.post('/transactions', (req, res) => {
+  res.status(201).json(req.body);
+});
 
 app.listen(process.env.PORT || 3000, () => console.log('server is listening'));
