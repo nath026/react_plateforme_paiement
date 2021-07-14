@@ -12,7 +12,7 @@ const denormalizeUser = (user) => {
   }).then((data) => new UserArticle({ _id: data.id, ...data.toJSON() }).save());
 };
 const denormalizeTrader = (trader) => {
-  Trader.findByPk(trader.id).then((data) => data.toJSON()).save(); //à revoir
+  Trader.findByPk(trader.id).then((data) => data.toJSON()).save();
 };
 User.addHook('afterUpdate', denormalizeUser);
 User.addHook('afterCreate', denormalizeUser);

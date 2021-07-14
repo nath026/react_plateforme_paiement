@@ -1,0 +1,16 @@
+.traderShow {
+    width: 400px;
+    height: 200px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    border: 1px solid rgb(159, 79, 175);
+    box-shadow: black 10px;
+    padding: 10px;
+}
+
+.traderShow:hover {
+    box-shadow: pink 10px;
+    cursor: pointer;
+}
