@@ -68,11 +68,7 @@ export default function TraderRegister(){
                     autocomplete="off"
                     id="inputRegisterTrader"
                     name="devise"
-                    as="select"
-                ><option value="EUR">EUR</option>
-                <option value="YEN">YEN</option>
-                <option value="USD">USD</option>
-             </Field>
+                />
                  <label>Contact Email </label>
                  <ErrorMessage name="contactEmail" component="span" />
                 <Field 
@@ -121,3 +117,14 @@ export default function TraderRegister(){
        </>
     );
 }
+
+
+// <Field 
+// autocomplete="off"
+// id="inputRegisterTrader"
+// name="devise"
+// as="select"
+// ><option value="EUR">EUR</option>
+// <option value="YEN">YEN</option>
+// <option value="USD">USD</option>
+// </Field>

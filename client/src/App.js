@@ -15,6 +15,7 @@ function App() {
             <Link to="/trader"> Show All Trader</Link>
             <Link to="/traderlogin"> Login as Trader</Link>
             <Link to="/traderregister"> Register as Trader</Link>
+            <Link to="/traderlogin"> Login as Trader</Link>
                 <Switch>
                     <Route exact path="/shop">
                         <Home/>
