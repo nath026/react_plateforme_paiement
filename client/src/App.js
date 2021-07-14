@@ -6,6 +6,8 @@ import TraderLogin from "./Components/Trader/TraderLogin";
 import AdminLogin from "./Components/Admin/AdminLogin";
 import TraderDisplayAll from './Components/Trader/TraderDisplayAll';
 import TraderRegister from "./Components/Trader/TraderRegister";
+import TraderProvider from "./Contexts/TraderContext";
+import {ArticleContext} from "./Contexts/ArticleContext";
 
 
 function App() {
@@ -16,24 +18,27 @@ function App() {
             <Link to="/traderlogin"> Login as Trader</Link>
             <Link to="/traderregister"> Register as Trader</Link>
                 <Switch>
-                    <Route exact path="/shop">
-                        <Home/>
-                        <Shop/>
+                    <Route exact path="/">
+                        <TraderProvider>
+                            <Home/>
+                        </TraderProvider>
+                    </Route>
+                    <Route exact path="*/shop">
+                        <ArticleContext>
+                            <Shop/>
+                        </ArticleContext>
+
                     </Route>
                     <Route exact path="/trader">
-                        <Home/>
                         <TraderDisplayAll/>
                     </Route>
                     <Route exact path="/traderlogin">
-                        <Home/>
                         <TraderLogin />
                     </Route>
                     <Route exact path="/traderregister">
-                        <Home/>
                         <TraderRegister />
                     </Route>
                     <Route exact path="/admin">
-                        <Home/>
                         <AdminLogin/>
                     </Route>
                 </Switch>

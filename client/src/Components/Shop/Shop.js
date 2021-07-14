@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {Add, Delete} from '@material-ui/icons';
 import {
     Checkbox,
@@ -9,9 +9,11 @@ import {
     ListItemSecondaryAction,
     ListItemText
 } from "@material-ui/core";
+import {ArticleContext} from "../../Contexts/ArticleContext";
 
 export default function Shop() {
 
+    const { article } = useContext(ArticleContext);
     const [checked, setChecked] = React.useState([0]);
 
     const handleToggle = (value) => () => {
@@ -29,26 +31,21 @@ export default function Shop() {
 
     return (
         <List>
-            {[0, 1, 2, 3].map((value) => {
+            {article.map((articles) => {
                 return (
-                    <ListItem key={value} role={undefined} dense button onClick={handleToggle(value)}>
+                    <ListItem key={articles} role={undefined} dense button onClick={handleToggle(articles)}>
                         <ListItemIcon>
                             <Checkbox
                                 edge="start"
-                                checked={checked.indexOf(value) !== -1}
+                                checked={checked.indexOf(articles) !== -1}
                                 tabIndex={-1}
                                 disableRipple
                             />
                         </ListItemIcon>
-                        <ListItemText primary="Article"/>
+                        <ListItemText primary={articles.label}/>
                         <ListItemSecondaryAction>
                             <IconButton edge="end">
                                 <Add/>
-                            </IconButton>
-                        </ListItemSecondaryAction>
-                        <ListItemSecondaryAction>
-                            <IconButton edge="end">
-                                <Delete/>
                             </IconButton>
                         </ListItemSecondaryAction>
                     </ListItem>
