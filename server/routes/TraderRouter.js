@@ -11,7 +11,6 @@ const router = Router();
 router
 // Affichage de tous les traders
   .get('/', (req, res) => {
-    res.send("Hi !!")
     const { page = 1, perPage = 10, ...query } = req.query;
     Trader.findAll({
       where: query,
