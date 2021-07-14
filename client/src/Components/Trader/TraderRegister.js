@@ -3,6 +3,7 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import axios from "axios";
 import { useState } from "react";
+import * as Yup from 'yup';
 
 export default function TraderRegister(){
     const [value, setValue] = React.useState('')
@@ -20,6 +21,17 @@ export default function TraderRegister(){
         updatedAt:"",
         createdAt:""
     }
+
+    const validationSchema = Yup.object().shape({
+        companyName: Yup.string().required,
+        kbis: Yup.number().required,
+        contactEmail: Yup.string().required,
+        username: Yup.string().required,
+        password: Yup.string().required,
+        updatedAt:Yup.date().required,
+        createdAt:Yup.date().required
+    })
+
     const [listOfTraders, setListOfTraders] = useState([]);
     const onSubmit = (data) => {
         console.log(data);
@@ -32,9 +44,11 @@ export default function TraderRegister(){
     return (
        <>
        <div className="registerTraderContainer">
-       <Formik initialValues={initialValues} onSubmit={onSubmit} >
+       <Formik initialValues={initialValues} onSubmit={onSubmit}>
+       {/* validationSchema={validationSchema} */}
             <Form>
                 <label>Nom de la company : </label>
+                <ErrorMessage name="companyName" component="span" />
                 <Field 
                     autocomplete="off"
                     id="inputRegisterTrader"
@@ -42,6 +56,7 @@ export default function TraderRegister(){
                     placeholter="Company Name"
                 />
                  <label>KBIS </label>
+                 <ErrorMessage name="companyName" component="span" />
                 <Field 
                     autocomplete="off"
                     id="inputRegisterTrader"
@@ -59,6 +74,7 @@ export default function TraderRegister(){
                 <option value="USD">USD</option>
              </Field>
                  <label>Contact Email </label>
+                 <ErrorMessage name="contactEmail" component="span" />
                 <Field 
                     autocomplete="off"
                     id="inputRegisterTrader"
@@ -66,6 +82,7 @@ export default function TraderRegister(){
                     placeholter="Contact email"
                 />
                  <label>Username </label>
+                 <ErrorMessage name="username" component="span" />
                 <Field 
                     autocomplete="off"
                     id="inputRegisterTrader"
@@ -73,6 +90,7 @@ export default function TraderRegister(){
                     placeholter="username"
                 />
                  <label>password </label>
+                 <ErrorMessage name="password" component="span" />
                 <Field 
                     autocomplete="off"
                     id="inputRegisterTrader"
@@ -81,6 +99,7 @@ export default function TraderRegister(){
                     type="password"
                 />
                   <label>CreatedAt </label>
+                  <ErrorMessage name="createdAt" component="span" />
                 <Field 
                     autocomplete="off"
                     id="inputRegisterTrader"
@@ -88,6 +107,7 @@ export default function TraderRegister(){
                     placeholter="createdAt"
                 />
                   <label>Updated At </label>
+                  <ErrorMessage name="updatedAt" component="span" />
                 <Field 
                     autocomplete="off"
                     id="inputRegisterTrader"
