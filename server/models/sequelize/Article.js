@@ -1,6 +1,8 @@
 const { Model, DataTypes } = require('sequelize');
 const connection = require('../../lib/sequelize');
 const Trader = require('./Trader');
+const Customer = require('./Customer');
+
 
 class Article extends Model {}
 
@@ -19,10 +21,6 @@ Article.init(
   },
 );
 
-// One-To-One
-// User.hasOne(Article)
-// Article.belongsTo(User, { as: "author" }); // unique author
-
 // One-To-Many
 Trader.MyArticles = Trader.hasMany(Article, {
   as: 'myArticles',
@@ -30,8 +28,13 @@ Trader.MyArticles = Trader.hasMany(Article, {
 });
 Article.belongsTo(Trader, { as: 'trader' }); // unique marchand
 
-// Many-To-Many
-// Article.belongsToMany(User, { as: "coauthors" }); // multiple author
-// User.hasMany(Article)
+// One-To-Many
+Customer.MyArticles = Customer.hasMany(Article, {
+  as: 'myArticles',
+  foreignKey: 'traderID',
+});
+Article.belongsTo(Customer, { as: 'customer' }); // unique customer
+
+
 
 module.exports = Article;
