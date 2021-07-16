@@ -6,9 +6,11 @@ export default function TraderLogin(){
 
     const truc = () => {
         // TODO: vérifier sur l'user est connecté 
-        axios.post("http://localhost:3000/traders/test", localStorage.getItem("token"))
+        axios.post("http://localhost:3000/traders/test", {
+            token: localStorage.getItem("jwt")
+        })
         .then((response) => {
-            console.log("crotte" + response);      
+            console.log("traderId" + response.data);      
         })
         // TODO: si erreur, afficher pop up
         .catch((e) => console.log("MAUVAIS MDP"));
