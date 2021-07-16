@@ -3,6 +3,8 @@
 const User = require('./User');
 const Article = require('./Article');
 const Trader = require('./Trader');
+const Transaction = require('./Transaction');
+const Order = require('./Order');
 const connection = require('../../lib/sequelize');
 
 const denormalizeUser = (user) => {
@@ -27,4 +29,6 @@ module.exports = {
   User,
   Article,
   Trader,
+  Order,
+  Transaction,
 };
