@@ -26,7 +26,7 @@ Article.init(
 // One-To-Many
 Trader.MyArticles = Trader.hasMany(Article, {
   as: 'myArticles',
-  foreignKey: 'traderID',
+  foreignKey: 'traderId',
 });
 Article.belongsTo(Trader, { as: 'trader' }); // unique marchand
 
