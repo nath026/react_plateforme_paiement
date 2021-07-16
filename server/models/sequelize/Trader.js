@@ -42,9 +42,9 @@ Trader.init(
       defaultValue: false,
     },
     role: {
-      type: DataTypes.ENUM(['BASIC', 'ADMIN']),
+      type: DataTypes.ENUM(['PENDING', 'BASIC', 'ADMIN']),
       allowNull: false,
-      defaultValue: 'BASIC',
+      defaultValue: 'PENDING',
     },
     confirmationURL: DataTypes.STRING,
     cancelUrL: DataTypes.STRING,

@@ -3,9 +3,10 @@
 /* eslint-disable no-console */
 /* eslint-disable no-unused-expressions */
 const { Router } = require('express');
+const bcryptjs = require('bcryptjs');
 const { prettifyErrors } = require('../lib/utils');
 const { Trader } = require('../models/sequelize');
-const bcryptjs = require('bcryptjs');
+const { createJWT } = require('../lib/security');
 
 const router = Router();
 
@@ -18,7 +19,7 @@ router
       // attributes: ["firstname", "confirmed"],
       limit: parseInt(perPage),
       offset: (parseInt(page) - 1) * parseInt(perPage),
-      paranoid: false
+      paranoid: false,
     })
       .then((data) => res.json(data))
       .catch((e) => res.sendStatus(500));
@@ -36,14 +37,19 @@ router
   })
 // Se login en tant que Trader
   .post('/login', async (req, res) => {
-    const { username, password } = req.body;
-    const trader = await Trader.findOne({ where: {username: username}});
-    if (!trader) res.json({ error: "User n'existe pas"});
+    const { username, password, role } = req.body;
+    const trader = await Trader.findOne({ where: { username } });
+    if (!trader) res.json({ error: "User n'existe pas" });
     bcryptjs.compare(password, trader.password).then((match) => {
-      if (!match) res.json({ error: "Mauvaise combinaison entre mdp et username"})
+      if (!match) res.json({ error: 'Mauvaise combinaison entre mdp et username' });
+      else {
+        createJWT({ username }, { role }).then((token) => res.json({
+          token,
+        }));
+      }
     })
-    .then((data) => res.json("Vous êtes logger"))
-    .catch((e) => res.sendStatus(500));
+      .then((data) => res.json('Vous êtes logger'))
+      .catch((e) => res.sendStatus(500));
   })
 // Afficher un Trader en particulier
   .get('/:id', (req, res) => {
