@@ -7,6 +7,7 @@ import AdminLogin from "./Components/Admin/AdminLogin";
 import TraderDisplayAll from './Components/Trader/TraderDisplayAll';
 import TraderRegister from "./Components/Trader/TraderRegister";
 import ArticleDisplayAll from './Components/Article/ArticleDisplayAll';
+import TraderTest from './Components/Trader/TraderTest';
 
 
 function App() {
@@ -43,6 +44,10 @@ function App() {
                     <Route exact path="/article">
                         <Home/>
                         <ArticleDisplayAll/>
+                    </Route>
+                    <Route exact path="/test">
+                        <Home/>
+                        <TraderTest/>
                     </Route>
                 </Switch>
             </BrowserRouter>

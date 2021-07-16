@@ -36,9 +36,9 @@ router
         } else console.error(e) || res.sendStatus(500);
       });
   })
-// Se login en tant que Trader
+  // Se login en tant que Trader
   .post('/login', async (req, res) => {
-     const { username, password } = req.body;
+    const { username, password } = req.body;
     const trader = await Trader.findOne({ where: {username: username}});
     if (!trader) res.json({ error: "User n'existe pas"});
     try {
@@ -57,7 +57,12 @@ router
     }
   })
 
-// Afficher un Trader en particulier
+  // test
+  .post('/test', async (req, res) => {
+    console.log(req.body)
+  })
+
+  // Afficher un Trader en particulier
   .get('/:id', (req, res) => {
     const { id } = req.params;
     Trader.findByPk(id)

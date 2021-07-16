@@ -9,15 +9,13 @@ export default function TraderLogin(){
         const data = { username: username, password: password};
         axios.post("http://localhost:3000/traders/login", data)
         .then((response) => {
-            console.log(response.data);
-            console.log(response);
-            ìf(response.status === 200)
-                    {
-                        myStorage = window.localStorage;
-                        myStorage.setItem('jwt', 'Tom');
-                    }            
-          
+            if(response.status === 200)
+            {
+                localStorage.setItem('jwt', response.data.token);
+            }       
         })
+        // TODO: si erreur, afficher pop up
+        .catch((e) => console.log("MAUVAIS MDP"));
     }
     return (
         <>
