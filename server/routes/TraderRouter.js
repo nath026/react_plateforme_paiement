@@ -6,6 +6,8 @@ const { Router } = require('express');
 const { prettifyErrors } = require('../lib/utils');
 const { Trader } = require('../models/sequelize');
 const bcryptjs = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const { restore } = require('../models/sequelize/User');
 
 const router = Router();
 
@@ -43,9 +45,12 @@ router
       const passwordValid = await bcryptjs.compare(password, trader.password)
       if (!passwordValid) {
        res.json({ error: "Mauvaise combinaison entre mdp et username"})
-      } else {
-        res.json("Vous êtes logger")
       }
+      // } else {
+      //   res.json("Vous êtes logger")
+      // }
+      const token = jwt.sign({ traderId: trader.id }, 'salut');
+      res.json({token:token});      
     }
     catch(e) {
       console.log(e);
