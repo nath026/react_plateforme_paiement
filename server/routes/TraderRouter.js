@@ -44,13 +44,13 @@ router
     try {
       const passwordValid = await bcryptjs.compare(password, trader.password)
       if (!passwordValid) {
-       res.json({ error: "Mauvaise combinaison entre mdp et username"})
+       res.status(500).json({ error: "Mauvaise combinaison entre mdp et username"})
       }
       // } else {
       //   res.json("Vous êtes logger")
       // }
       const token = jwt.sign({ traderId: trader.id }, 'salut');
-      res.json({token:token});      
+      res.status(200).json({token:token});      
     }
     catch(e) {
       console.log(e);

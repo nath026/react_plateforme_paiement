@@ -7,8 +7,16 @@ export default function TraderLogin(){
 
     const login = () => {
         const data = { username: username, password: password};
-        axios.post("http://localhost:3000/traders/login", data).then((response) => {
+        axios.post("http://localhost:3000/traders/login", data)
+        .then((response) => {
             console.log(response.data);
+            console.log(response);
+            ìf(response.status === 200)
+                    {
+                        myStorage = window.localStorage;
+                        myStorage.setItem('jwt', 'Tom');
+                    }            
+          
         })
     }
     return (
