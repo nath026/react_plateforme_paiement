@@ -36,15 +36,22 @@ router
   })
 // Se login en tant que Trader
   .post('/login', async (req, res) => {
-    const { username, password } = req.body;
+     const { username, password } = req.body;
     const trader = await Trader.findOne({ where: {username: username}});
     if (!trader) res.json({ error: "User n'existe pas"});
-    bcryptjs.compare(password, trader.password).then((match) => {
-      if (!match) res.json({ error: "Mauvaise combinaison entre mdp et username"})
-    })
-    .then((data) => res.json("Vous êtes logger"))
-    .catch((e) => res.sendStatus(500));
+    try {
+      const passwordValid = await bcryptjs.compare(password, trader.password)
+      if (!passwordValid) {
+       res.json({ error: "Mauvaise combinaison entre mdp et username"})
+      } else {
+        res.json("Vous êtes logger")
+      }
+    }
+    catch(e) {
+      console.log(e);
+    }
   })
+
 // Afficher un Trader en particulier
   .get('/:id', (req, res) => {
     const { id } = req.params;
