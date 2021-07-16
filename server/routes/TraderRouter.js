@@ -11,6 +11,7 @@ const { restore } = require('../models/sequelize/User');
 
 const router = Router();
 
+// TODO : mettre les try catch token pour les fonctions 
 router
 // Affichage de tous les traders
   .get('/', (req, res) => {
@@ -49,7 +50,7 @@ router
       // } else {
       //   res.json("Vous êtes logger")
       // }
-      // changer salut par ENV
+      // TODO : changer salut par ENV
       const token = jwt.sign({ traderId: trader.id }, 'salut');
       res.status(200).json({token:token});      
     }
