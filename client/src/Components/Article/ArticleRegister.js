@@ -17,14 +17,19 @@ export default function ArticleRegister(){
         quantity: "",
         updatedAt:"",
         createdAt:"",
+        token: localStorage.getItem("jwt"),
     }
 
     const [listOfArticles, setListOfArticles] = useState([]);
     const onSubmit = (data) => {
         console.log(data);
-        axios.post("http://localhost:3000/articles", data).then((response) => {
+        axios.post("http://localhost:3000/articles", data)
+        .then((response) => {
             setListOfArticles(response.data);
-            // console.log("DONE ENVOIE");
+            console.log(response);
+        })
+        .catch((e) => { 
+            console.log(JSON.stringify(e));
         })
 
     }
