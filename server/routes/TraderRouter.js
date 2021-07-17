@@ -4,12 +4,15 @@
 /* eslint-disable no-unused-expressions */
 const { Router } = require('express');
 const bcryptjs = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const { prettifyErrors } = require('../lib/utils');
 const { Trader } = require('../models/sequelize');
 const { createJWT } = require('../lib/security');
+require('dotenv').config();
 
 const router = Router();
 
+// TODO : mettre les try catch token pour les fonctions
 router
 // Affichage de tous les traders
   .get('/', (req, res) => {
@@ -32,26 +35,46 @@ router
       .catch((e) => {
         if (e.name === 'SequelizeValidationError') {
           res.status(400).json(prettifyErrors(e));
-        } else console.error(e) || res.sendStatus(500);
+        } else {
+          res.status(500).json('Error system');
+          console.error(e);
+        }
       });
   })
-// Se login en tant que Trader
+  // Se login en tant que Trader
   .post('/login', async (req, res) => {
     const { username, password, role } = req.body;
     const trader = await Trader.findOne({ where: { username } });
     if (!trader) res.json({ error: "User n'existe pas" });
-    bcryptjs.compare(password, trader.password).then((match) => {
-      if (!match) res.json({ error: 'Mauvaise combinaison entre mdp et username' });
-      else {
-        createJWT({ username }, { role }).then((token) => res.json({
-          token,
-        }));
+    try {
+      const passwordValid = await bcryptjs.compare(password, trader.password);
+      if (!passwordValid) {
+        res.status(500).json({ error: 'Mauvaise combinaison entre mdp et username' });
       }
-    })
-      .then((data) => res.json('Vous êtes logger'))
-      .catch((e) => res.sendStatus(500));
+      // TODO : changer salut par ENV
+      const token = jwt.sign({ traderId: trader.id }, 'salut');
+      res.status(200).json({ token });
+    } catch (e) {
+      res.sendStatus(500).json('error impossible de se co');
+      console.log(e);
+    }
   })
-// Afficher un Trader en particulier
+
+  // test
+  .post('/test', async (req, res) => {
+    // const decoded = jwt.verify(req.body.token, 'salut');
+    try {
+      const decoded = jwt.verify(req.body.token, 'salut');
+      // decoded.traderId;
+      res.json(decoded.traderId);
+    } catch (err) {
+      console.log(err);
+    }
+    console.log(decoded.foo); // bar
+    console.log(req.body);
+  })
+
+  // Afficher un Trader en particulier
   .get('/:id', (req, res) => {
     const { id } = req.params;
     Trader.findByPk(id)
@@ -61,17 +84,30 @@ router
 // MAJ d'un trader
 // TO DO : route accessible que pour les admins
   .put('/:id', (req, res) => {
-    Trader.update(req.body, {
-      where: { id: req.params.id },
-      returning: true,
-      individualHooks: true,
-    })
-      .then(([, [data]]) => (data !== undefined ? res.json(data) : res.sendStatus(404)))
-      .catch((e) => {
-        if (e.name === 'SequelizeValidationError') {
-          res.status(400).json(prettifyErrors(e));
-        } else res.sendStatus(500);
+    try {
+      const decoded = jwt.verify(req.body.token, 'salut');
+      const idTrader = decoded.traderId;
+      if (idTrader == req.params.id) {
+        res.json('GOOD POUR METTRE A JOUR USER');
+      } else {
+        res.json("VOUS n'êtes pas autoriésé à modif cet user");
+      }
+    } catch (e) {
+      res.status(500).json({
+        error: "VOUS n'êtes pas autoriésé à modif cet user",
       });
+    }
+    // Trader.update(req.body, {
+    //   where: { id: req.params.id },
+    //   returning: true,
+    //   individualHooks: true,
+    // })
+    //   .then(([, [data]]) => (data !== undefined ? res.json(data) : res.sendStatus(404)))
+    //   .catch((e) => {
+    //     if (e.name === 'SequelizeValidationError') {
+    //       res.status(400).json(prettifyErrors(e));
+    //     } else res.sendStatus(500);
+    //   });
   })
 // Supprimer un Trader
 // TO DO : route accessible que pour les admins

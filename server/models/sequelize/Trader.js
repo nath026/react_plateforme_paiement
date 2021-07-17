@@ -48,6 +48,8 @@ Trader.init(
     },
     confirmationURL: DataTypes.STRING,
     cancelUrL: DataTypes.STRING,
+    client_toke: DataTypes.STRING,
+    client_secret: DataTypes.STRING,
   },
   {
     sequelize: connection,
