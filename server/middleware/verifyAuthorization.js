@@ -1,6 +1,6 @@
 const { verifJWT } = require('../lib/security');
 
-module.exports = function verifyAuthorization(req, res, next) {
+function verifyAuthorization(req, res, next) {
   const authorization = req.headers.Authorization ?? req.headers.authorization;
   if (!authorization) {
     res.sendStatus(401);
@@ -30,4 +30,21 @@ module.exports = function verifyAuthorization(req, res, next) {
         .catch(() => res.sendStatus(401));
       break;
   }
+}
+
+const authRole = (permission) => (req, res, next) => {
+  const userRole = req.body.role;
+  if (userRole === 'PENDING') {
+    return res.status(200).json('Your status is still being verified');
+  } if (permission.includes(userRole)) {
+    next();
+  } else {
+    return res.status(401).json('No permission');
+  }
+};
+
+module.exports = {
+  authRole,
+  verifyAuthorization,
+
 };
