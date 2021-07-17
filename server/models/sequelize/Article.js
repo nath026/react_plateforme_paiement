@@ -19,19 +19,4 @@ Article.init(
   },
 );
 
-// One-To-One
-// User.hasOne(Article)
-// Article.belongsTo(User, { as: "author" }); // unique author
-
-// One-To-Many
-Trader.MyArticles = Trader.hasMany(Article, {
-  as: 'myArticles',
-  foreignKey: 'traderID',
-});
-Article.belongsTo(Trader, { as: 'trader' }); // unique marchand
-
-// Many-To-Many
-// Article.belongsToMany(User, { as: "coauthors" }); // multiple author
-// User.hasMany(Article)
-
 module.exports = Article;

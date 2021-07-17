@@ -1,13 +1,13 @@
 const { Model, DataTypes } = require('sequelize');
 const connection = require('../../lib/sequelize');
-const Trader = require('./Trader');
-const Order = require('./Order');
 
 class Transaction extends Model {}
 
 Transaction.init(
-  // Schema
   {
+    firstName: DataTypes.STRING,
+    lastName: DataTypes.STRING,
+    price: DataTypes.BIGINT,
     addressFacturation: DataTypes.STRING,
     addressLivraison: DataTypes.STRING,
   },
@@ -17,20 +17,5 @@ Transaction.init(
     paranoid: true,
   },
 );
-
-// One-To-One
-Order.hasOne(Transaction);
-Transaction.belongsTo(Order, { as: "order" }); // unique author
-
-// One-To-Many
-// Trader.MyArticles = Trader.hasMany(Transaction, {
-//   as: 'myArticles',
-//   foreignKey: 'traderID',
-// });
-// Transaction.belongsTo(Trader, { as: 'trader' }); // unique marchand
-
-// Many-To-Many
-// Article.belongsToMany(User, { as: "coauthors" }); // multiple author
-// User.hasMany(Article)
 
 module.exports = Transaction;
