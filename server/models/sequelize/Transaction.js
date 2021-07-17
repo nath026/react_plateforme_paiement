@@ -1,6 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const connection = require('../../lib/sequelize');
 const Trader = require('./Trader');
+const Order = require('./Order');
 
 class Transaction extends Model {}
 
@@ -18,7 +19,7 @@ Transaction.init(
 );
 
 // One-To-One
-Order.hasOne(Transaction)
+Order.hasOne(Transaction);
 Transaction.belongsTo(Order, { as: "order" }); // unique author
 
 // One-To-Many
