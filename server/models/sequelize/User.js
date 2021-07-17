@@ -23,11 +23,6 @@ User.init(
       unique: true,
       allowNull: false,
     },
-    confirmed: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false,
-    },
   },
   {
     sequelize: connection,

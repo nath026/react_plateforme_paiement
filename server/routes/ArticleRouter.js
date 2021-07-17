@@ -1,11 +1,12 @@
-const { Router } = require("express");
-const { prettifyErrors } = require("../lib/utils");
-const { Trader, Article } = require("../models/sequelize");
+const { Router } = require('express');
 const jwt = require('jsonwebtoken');
+const { prettifyErrors } = require('../lib/utils');
+const { Trader, Article } = require('../models/sequelize');
+
 const router = Router();
 
 router
-  .get("/", (req, res) => {
+  .get('/', (req, res) => {
     const {
       // author = {},
       page = 1,
@@ -14,7 +15,7 @@ router
     } = req.query;
     Article.findAll({
       where: query,
-      //attributes: ["firstname", "confirmed"],
+      // attributes: ["firstname", "confirmed"],
       limit: parseInt(perPage),
       offset: (parseInt(page) - 1) * parseInt(perPage),
       paranoid: false,
@@ -25,39 +26,37 @@ router
       .then((data) => res.json(data))
       .catch((e) => res.sendStatus(500));
   })
-  .post("/", (req, res) => {
+  .post('/', (req, res) => {
     let decoded;
-    try{
-     decoded = jwt.verify(req.body.token, 'salut');
-      
-    } catch(e) {
+    try {
+      decoded = jwt.verify(req.body.token, 'salut');
+    } catch (e) {
       res.json({
-        error: "impossible de crééer un article , token invalide" 
-      })
+        error: 'impossible de crééer un article , token invalide',
+      });
       return;
     }
     const idTrader = decoded.traderId;
-    new Article({traderId: idTrader, ...req.body})
+    new Article({ traderId: idTrader, ...req.body })
       .save()
-      .then((data) => res.status(201).json(data, "Article enregistré !"))
+      .then((data) => res.status(201).json(data, 'Article enregistré !'))
       .catch((e) => {
-        if (e.name === "SequelizeValidationError") {
+        if (e.name === 'SequelizeValidationError') {
           res.status(400).json(prettifyErrors(e));
-        } 
-        else {
+        } else {
           console.log(e);
-          res.json({
-          error: "erreur dans la sauvegarde" });}
+          res.json({ error: 'erreur dans la sauvegarde' });
+        }
       });
-      
   })
-  .get("/:id", (req, res) => {
+  .get('/:id', (req, res) => {
     const { id } = req.params;
     Article.findByPk(id)
       .then((data) => (data !== null ? res.json(data) : res.sendStatus(404)))
       .catch((e) => res.sendStatus(500));
   })
-  .put("/:id", (req, res) => {
+  // le trader where ownerId = traderId
+  .put('/:id', (req, res) => {
     Article.update(req.body, {
       where: { id: parseInt(req.params.id) },
       returning: true,
@@ -70,12 +69,12 @@ router
       })
       .catch((e) => {
         console.error(e);
-        if (e.name === "SequelizeValidationError") {
+        if (e.name === 'SequelizeValidationError') {
           res.status(400).json(prettifyErrors(e));
         } else res.sendStatus(500);
       });
   })
-  .delete("/:id", (req, res) => {
+  .delete('/:id', (req, res) => {
     // <==> HttpCode.deleteOne({ _id: req.params.code })
     Article.destroy({ where: { id: req.params.id } })
       .then((data) => res.sendStatus(data !== 0 ? 204 : 404))

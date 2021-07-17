@@ -1,0 +1,51 @@
+# GET http://localhost:3000/user/hello/
+# Content-Type: application/json
+
+# {
+#     "kbis": "122223322222",
+#   "companyName": "yolo",
+#   "username": "lool@lool.com",
+#   "password": "test",
+#   "role": "ADMIN"
+#   "contactEmail": "zoulou@live.fr",
+#   "devise": "EUR",
+#   "role": "ADMIN"
+
+# }
+
+# POST http://localhost:3000/traders/login
+# Content-Type: application/json
+
+# {
+
+#   "username": "zoulou@live.fr",
+#   "password": "ffeeefef",
+
+# }
+# 
+
+# POST http://localhost:3000/traders/
+# Content-Type: application/json
+
+# {
+#   "kbis": "123",
+#   "companyName": "admin",
+#   "username": "admin@live.fr",
+#   "password": "123456",
+#   "contactEmail": "admin@live.fr",
+#   "devise": "EUR",
+#   "role": "ADMIN"
+# }
+
+POST http://localhost:3000/traders/
+Content-Type: application/json
+
+{
+  "kbis": "11",
+  "companyName": "pop11",
+  "username": "pop11@live.fr",
+  "password": "ffeeefef",
+  "contactEmail": "pop11@live.fr",
+  "devise": "EUR",
+  "role": "PENDING"
+}

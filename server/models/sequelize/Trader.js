@@ -41,8 +41,15 @@ Trader.init(
       allowNull: false,
       defaultValue: false,
     },
+    role: {
+      type: DataTypes.ENUM(['PENDING', 'BASIC', 'ADMIN']),
+      allowNull: false,
+      defaultValue: 'PENDING',
+    },
     confirmationURL: DataTypes.STRING,
     cancelUrL: DataTypes.STRING,
+    client_toke: DataTypes.STRING,
+    client_secret: DataTypes.STRING,
   },
   {
     sequelize: connection,
