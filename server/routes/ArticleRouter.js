@@ -26,14 +26,30 @@ router
       .catch((e) => res.sendStatus(500));
   })
   .post("/", (req, res) => {
-    new Article(req.body)
+    let decoded;
+    try{
+     decoded = jwt.verify(req.body.token, 'salut');
+      
+    } catch(e) {
+      res.json({
+        error: "impossible de crééer un article , token invalide" 
+      })
+      return;
+    }
+    const idTrader = decoded.traderId;
+    new Article({traderId: idTrader, ...req.body})
       .save()
       .then((data) => res.status(201).json(data, "Article enregistré !"))
       .catch((e) => {
         if (e.name === "SequelizeValidationError") {
           res.status(400).json(prettifyErrors(e));
-        } else res.sendStatus(500, "erreur dans la sauvegarde");
+        } 
+        else {
+          console.log(e);
+          res.json({
+          error: "erreur dans la sauvegarde" + prettifyErrors(e)});}
       });
+      
   })
   .get("/:id", (req, res) => {
     const { id } = req.params;
