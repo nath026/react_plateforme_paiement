@@ -47,7 +47,7 @@ router
         else {
           console.log(e);
           res.json({
-          error: "erreur dans la sauvegarde" + prettifyErrors(e)});}
+          error: "erreur dans la sauvegarde" });}
       });
       
   })
