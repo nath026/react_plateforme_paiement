@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const jwt = require('jsonwebtoken');
 const { prettifyErrors } = require('../lib/utils');
 const { Trader, Article } = require('../models/sequelize');
 
@@ -25,15 +26,27 @@ router
       .then((data) => res.json(data))
       .catch((e) => res.sendStatus(500));
   })
-  // le trader shop appartient
   .post('/', (req, res) => {
-    new Article(req.body)
+    let decoded;
+    try {
+      decoded = jwt.verify(req.body.token, 'salut');
+    } catch (e) {
+      res.json({
+        error: 'impossible de crééer un article , token invalide',
+      });
+      return;
+    }
+    const idTrader = decoded.traderId;
+    new Article({ traderId: idTrader, ...req.body })
       .save()
-      .then((data) => res.status(201).json(data))
+      .then((data) => res.status(201).json(data, 'Article enregistré !'))
       .catch((e) => {
         if (e.name === 'SequelizeValidationError') {
           res.status(400).json(prettifyErrors(e));
-        } else res.sendStatus(500);
+        } else {
+          console.log(e);
+          res.json({ error: 'erreur dans la sauvegarde' });
+        }
       });
   })
   .get('/:id', (req, res) => {

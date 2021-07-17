@@ -7,6 +7,7 @@ import AdminLogin from "./Components/Admin/AdminLogin";
 import TraderDisplayAll from './Components/Trader/TraderDisplayAll';
 import TraderRegister from "./Components/Trader/TraderRegister";
 import ArticleDisplayAll from './Components/Article/ArticleDisplayAll';
+import ArticleRegister from "./Components/Article/ArticleRegister";
 import TraderTest from './Components/Trader/TraderTest';
 
 
@@ -17,9 +18,9 @@ function App() {
             <Link to="/trader"> Show All Trader</Link>
             <Link to="/traderlogin"> Login as Trader</Link>
             <Link to="/traderregister"> Register as Trader</Link>
-            <Link to="/traderlogin"> Login as Trader</Link>
             <br></br>
             <Link to="/article"> Show All Articles</Link>
+            <Link to="/article-register"> Add Articles</Link>
                 <Switch>
                     <Route exact path="/shop">
                         <Home/>
@@ -48,6 +49,10 @@ function App() {
                     <Route exact path="/test">
                         <Home/>
                         <TraderTest/>
+                    </Route>
+                    <Route exact path="/article-register">
+                        <Home/>
+                        <ArticleRegister/>
                     </Route>
                 </Switch>
             </BrowserRouter>
