@@ -30,7 +30,7 @@ router
   .post('/', (req, res) => {
     new Trader(req.body)
       .save()
-      .then((data) => res.status(201).json(data))
+      .then((data) => res.status(201).json(data, "TRADER ENREGISTRÉ !"))
       .catch((e) => {
         if (e.name === 'SequelizeValidationError') {
           res.status(400).json(prettifyErrors(e));

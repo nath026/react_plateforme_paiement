@@ -1,11 +1,10 @@
-// import { Select, TextField, MenuItem, Button } from '@material-ui/core';
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import axios from "axios";
 import { useState } from "react";
-import * as Yup from 'yup';
 
-export default function TraderRegister(){
+
+export default function ArticleRegister(){
     const [value, setValue] = React.useState('')
     const handleChange = (event) => {
         setValue(event.target.value)
@@ -17,14 +16,14 @@ export default function TraderRegister(){
         price: "",
         quantity: "",
         updatedAt:"",
-        createdAt:""
+        createdAt:"",
     }
 
-    const [listOfTraders, setListOfTraders] = useState([]);
+    const [listOfArticles, setListOfArticles] = useState([]);
     const onSubmit = (data) => {
         console.log(data);
-        axios.post("http://localhost:3000/traders", data).then((response) => {
-            setListOfTraders(response.data);
+        axios.post("http://localhost:3000/articles", data).then((response) => {
+            setListOfArticles(response.data);
             // console.log("DONE ENVOIE");
         })
 
@@ -33,64 +32,48 @@ export default function TraderRegister(){
        <>
        <div className="registerTraderContainer">
        <Formik initialValues={initialValues} onSubmit={onSubmit}>
-       {/* validationSchema={validationSchema} */}
             <Form>
-                <label>Nom de la company : </label>
-                <ErrorMessage name="companyName" component="span" />
+                <label>Name : </label>
                 <Field 
                     autocomplete="off"
-                    id="inputRegisterTrader"
-                    name="companyName"
-                    placeholter="Company Name"
+                    id="inputSaveArticle"
+                    name="name"
+                    placeholder="name"
                 />
-                 <label>KBIS </label>
-                 <ErrorMessage name="companyName" component="span" />
+                 <label>description </label>
                 <Field 
                     autocomplete="off"
-                    id="inputRegisterTrader"
-                    name="kbis"
-                    placeholter="kbis"
+                    id="inputSaveArticle"
+                    name="description"
+                    placeholder="description"
                 />
-                 <label>Contact Email </label>
-                 <ErrorMessage name="contactEmail" component="span" />
+                 <label>price</label>
                 <Field 
                     autocomplete="off"
-                    id="inputRegisterTrader"
-                    name="contactEmail"
-                    placeholter="Contact email"
+                    id="inputSaveArticle"
+                    name="price"
+                    placeholder="12"
                 />
-                 <label>Username </label>
-                 <ErrorMessage name="username" component="span" />
+                 <label>quantity</label>
                 <Field 
                     autocomplete="off"
-                    id="inputRegisterTrader"
-                    name="username"
-                    placeholter="username"
-                />
-                 <label>password </label>
-                 <ErrorMessage name="password" component="span" />
-                <Field 
-                    autocomplete="off"
-                    id="inputRegisterTrader"
-                    name="password"
-                    placeholter="password"
-                    type="password"
+                    id="inputSaveArticle"
+                    name="quantity"
+                    placeholder="quantity"
                 />
                   <label>CreatedAt </label>
-                  <ErrorMessage name="createdAt" component="span" />
                 <Field 
                     autocomplete="off"
-                    id="inputRegisterTrader"
+                    id="inputSaveArticle"
                     name="createdAt"
-                    placeholter="createdAt"
+                    placeholder="2020-12-21"
                 />
                   <label>Updated At </label>
-                  <ErrorMessage name="updatedAt" component="span" />
                 <Field 
                     autocomplete="off"
-                    id="inputRegisterTrader"
+                    id="inputSaveArticle"
                     name="updatedAt"
-                    placeholter="updatedAt"
+                    placeholder="2020-12-21"
                 />
                 <button type="submit"> Envoyer </button>
             </Form>
@@ -100,13 +83,3 @@ export default function TraderRegister(){
     );
 }
 
-
-// <Field 
-// autocomplete="off"
-// id="inputRegisterTrader"
-// name="devise"
-// as="select"
-// ><option value="EUR">EUR</option>
-// <option value="YEN">YEN</option>
-// <option value="USD">USD</option>
-// </Field>

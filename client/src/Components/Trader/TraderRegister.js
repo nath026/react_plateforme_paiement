@@ -53,7 +53,7 @@ export default function TraderRegister(){
                     autocomplete="off"
                     id="inputRegisterTrader"
                     name="companyName"
-                    placeholter="Company Name"
+                    placeholder="Company Name"
                 />
                  <label>KBIS </label>
                  <ErrorMessage name="companyName" component="span" />
@@ -61,7 +61,7 @@ export default function TraderRegister(){
                     autocomplete="off"
                     id="inputRegisterTrader"
                     name="kbis"
-                    placeholter="kbis"
+                    placeholder="kbis"
                 />
                  <label>Devise </label>
                 <Field 
@@ -75,7 +75,7 @@ export default function TraderRegister(){
                     autocomplete="off"
                     id="inputRegisterTrader"
                     name="contactEmail"
-                    placeholter="Contact email"
+                    placeholder="abc@abc.fr"
                 />
                  <label>Username </label>
                  <ErrorMessage name="username" component="span" />
@@ -83,7 +83,7 @@ export default function TraderRegister(){
                     autocomplete="off"
                     id="inputRegisterTrader"
                     name="username"
-                    placeholter="username"
+                    placeholder="abc@abc.fr"
                 />
                  <label>password </label>
                  <ErrorMessage name="password" component="span" />
@@ -91,7 +91,7 @@ export default function TraderRegister(){
                     autocomplete="off"
                     id="inputRegisterTrader"
                     name="password"
-                    placeholter="password"
+                    placeholder="password"
                     type="password"
                 />
                   <label>CreatedAt </label>
@@ -100,7 +100,7 @@ export default function TraderRegister(){
                     autocomplete="off"
                     id="inputRegisterTrader"
                     name="createdAt"
-                    placeholter="createdAt"
+                    placeholder="2020-12-21"
                 />
                   <label>Updated At </label>
                   <ErrorMessage name="updatedAt" component="span" />
@@ -108,7 +108,7 @@ export default function TraderRegister(){
                     autocomplete="off"
                     id="inputRegisterTrader"
                     name="updatedAt"
-                    placeholter="updatedAt"
+                    placeholder="2020-12-21"
                 />
                 <button type="submit"> Envoyer </button>
             </Form>

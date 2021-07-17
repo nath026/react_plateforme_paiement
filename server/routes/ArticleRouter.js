@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const { prettifyErrors } = require("../lib/utils");
 const { Trader, Article } = require("../models/sequelize");
+const jwt = require('jsonwebtoken');
 const router = Router();
 
 router
@@ -27,11 +28,11 @@ router
   .post("/", (req, res) => {
     new Article(req.body)
       .save()
-      .then((data) => res.status(201).json(data))
+      .then((data) => res.status(201).json(data, "Article enregistré !"))
       .catch((e) => {
         if (e.name === "SequelizeValidationError") {
           res.status(400).json(prettifyErrors(e));
-        } else res.sendStatus(500);
+        } else res.sendStatus(500, "erreur dans la sauvegarde");
       });
   })
   .get("/:id", (req, res) => {
