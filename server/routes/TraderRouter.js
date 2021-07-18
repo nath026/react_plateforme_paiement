@@ -3,15 +3,15 @@
 /* eslint-disable no-console */
 /* eslint-disable no-unused-expressions */
 const { Router } = require('express');
-const { prettifyErrors } = require('../lib/utils');
-const { Trader } = require('../models/sequelize');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { prettifyErrors } = require('../lib/utils');
+const { Trader } = require('../models/sequelize');
 const { restore } = require('../models/sequelize/User');
 
 const router = Router();
 
-// TODO : mettre les try catch token pour les fonctions 
+// TODO : mettre les try catch token pour les fonctions
 router
 // Affichage de tous les traders
   .get('/', (req, res) => {
@@ -21,7 +21,7 @@ router
       // attributes: ["firstname", "confirmed"],
       limit: parseInt(perPage),
       offset: (parseInt(page) - 1) * parseInt(perPage),
-      paranoid: false
+      paranoid: false,
     })
       .then((data) => res.json(data))
       .catch((e) => res.sendStatus(500));
@@ -30,32 +30,37 @@ router
   .post('/', (req, res) => {
     new Trader(req.body)
       .save()
-      .then((data) => res.status(201).json(data, "TRADER ENREGISTRÉ !"))
+      .then((data) => {
+        res.status(201).json({ trader: data });
+        console.log('reeeeeeeeees', res);
+      })
       .catch((e) => {
         if (e.name === 'SequelizeValidationError') {
           res.status(400).json(prettifyErrors(e));
-        } else console.error(e) || res.sendStatus(500);
+        } else {
+          res.status(500).json('Error system');
+          console.error(e);
+        }
       });
   })
   // Se login en tant que Trader
   .post('/login', async (req, res) => {
     const { username, password } = req.body;
-    const trader = await Trader.findOne({ where: {username: username}});
-    if (!trader) res.json({ error: "User n'existe pas"});
+    const trader = await Trader.findOne({ where: { username } });
+    if (!trader) res.json({ error: "User n'existe pas" });
     try {
-      const passwordValid = await bcryptjs.compare(password, trader.password)
+      const passwordValid = await bcryptjs.compare(password, trader.password);
       if (!passwordValid) {
-       res.status(500).json({ error: "Mauvaise combinaison entre mdp et username"})
+        res.status(500).json({ error: 'Mauvaise combinaison entre mdp et username' });
       }
       // } else {
       //   res.json("Vous êtes logger")
       // }
       // TODO : changer salut par ENV
       const token = jwt.sign({ traderId: trader.id }, 'salut');
-      res.status(200).json({token:token});      
-    }
-    catch(e) {
-      res.sendStatus(500).json("error impossible de se co")
+      res.status(200).json({ token });
+    } catch (e) {
+      res.sendStatus(500).json('error impossible de se co');
       console.log(e);
     }
   })
@@ -66,13 +71,12 @@ router
     try {
       const decoded = jwt.verify(req.body.token, 'salut');
       // decoded.traderId;
-      res.json(decoded.traderId)
-
-    } catch(err) {
-     console.log(err);
+      res.json(decoded.traderId);
+    } catch (err) {
+      console.log(err);
     }
-    console.log(decoded.foo) // bar
-    console.log(req.body)
+    console.log(decoded.foo); // bar
+    console.log(req.body);
   })
 
   // Afficher un Trader en particulier
@@ -88,15 +92,15 @@ router
     try {
       const decoded = jwt.verify(req.body.token, 'salut');
       const idTrader = decoded.traderId;
-      if(idTrader == req.params.id) {
-        res.json("GOOD POUR METTRE A JOUR USER")
+      if (idTrader == req.params.id) {
+        res.json('GOOD POUR METTRE A JOUR USER');
       } else {
-        res.json("VOUS n'êtes pas autoriésé à modif cet user")
+        res.json("VOUS n'êtes pas autoriésé à modif cet user");
       }
-    } catch(e) {
+    } catch (e) {
       res.status(500).json({
-        error: "VOUS n'êtes pas autoriésé à modif cet user"
-      })
+        error: "VOUS n'êtes pas autoriésé à modif cet user",
+      });
     }
     // Trader.update(req.body, {
     //   where: { id: req.params.id },
@@ -109,7 +113,6 @@ router
     //       res.status(400).json(prettifyErrors(e));
     //     } else res.sendStatus(500);
     //   });
-      
   })
 // Supprimer un Trader
 // TO DO : route accessible que pour les admins
