@@ -2,10 +2,12 @@
 
 const express = require('express');
 const cors = require('cors');
-const TraderRouter = require('./routes/TraderRouter');
+const { authRole } = require('./middleware/verifyAuthorization');
+require('dotenv').config();
 
 const app = express();
 
+const TraderRouter = require('./routes/TraderRouter');
 const ArticleRouter = require('./routes/ArticleRouter');
 
 // app.set('views', `${__dirname}/views`);
@@ -25,5 +27,18 @@ app.post('/transactions', (req, res) => {
 app.use('/traders', TraderRouter);
 
 app.use('/articles', ArticleRouter);
+
+// test permission role admin
+app.get('/admin/test', authRole(['ADMIN']), async (req, res) => {
+  res.json({ message: 'hello admin' });
+});
+// test permission admin and user
+app.get('/user/hello', authRole(['BASIC', 'ADMIN']), async (req, res) => {
+  res.json({ message: "you're log" });
+});
+// test libre accès
+app.get('/home', async (req, res) => {
+  res.json({ message: 'everyone can see' });
+});
 
 app.listen(process.env.PORT || 3000, () => console.log('server is listening'));
