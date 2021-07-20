@@ -58,7 +58,7 @@ async function init() {
   Article.belongsTo(Transaction, { as: 'multipleArticle' });
   Transaction.hasMany(Article);
 
-  await connection.sync({ force: true });
+  await connection.sync({ force: false });
   console.log('Database sync');
 }
 
