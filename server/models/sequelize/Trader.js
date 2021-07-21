@@ -36,6 +36,11 @@ Trader.init(
       unique: true,
       allowNull: false,
     },
+    role: {
+      type: DataTypes.ENUM(['PENDING', 'BASIC', 'ADMIN']),
+      allowNull: false,
+      defaultValue: 'PENDING',
+    },
     confirmed: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
@@ -43,6 +48,8 @@ Trader.init(
     },
     confirmationURL: DataTypes.STRING,
     cancelUrL: DataTypes.STRING,
+    client_toke: DataTypes.STRING,
+    client_secret: DataTypes.STRING,
   },
   {
     sequelize: connection,
