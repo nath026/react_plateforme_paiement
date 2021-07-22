@@ -3,12 +3,12 @@ import {BrowserRouter, Route, Switch, Link} from "react-router-dom";
 import Home from "./Components/Shop/Home";
 import Shop from "./Components/Shop/Shop";
 import TraderLogin from "./Components/Trader/TraderLogin";
-import AdminLogin from "./Components/Admin/AdminLogin";
 import TraderDisplayAll from './Components/Trader/TraderDisplayAll';
 import TraderRegister from "./Components/Trader/TraderRegister";
 import ArticleDisplayAll from './Components/Article/ArticleDisplayAll';
 import ArticleRegister from "./Components/Article/ArticleRegister";
 import TraderTest from './Components/Trader/TraderTest';
+import Dashboard from "./Components/Admin/Dashboard";
 
 
 function App() {
@@ -18,9 +18,10 @@ function App() {
             <Link to="/trader"> Show All Trader</Link>
             <Link to="/traderlogin"> Login as Trader</Link>
             <Link to="/traderregister"> Register as Trader</Link>
-            <br></br>
+            <br/>
             <Link to="/article"> Show All Articles</Link>
             <Link to="/article-register"> Add Articles</Link>
+                <Link to="/admin">Admin dashboard</Link>
                 <Switch>
                     <Route exact path="/shop">
                         <Home/>
@@ -40,7 +41,7 @@ function App() {
                     </Route>
                     <Route exact path="/admin">
                         <Home/>
-                        <AdminLogin/>
+                        <Dashboard/>
                     </Route>
                     <Route exact path="/article">
                         <Home/>
