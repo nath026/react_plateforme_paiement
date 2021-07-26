@@ -25,6 +25,7 @@
     "jsdom": "^16.5.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.14",
+    "node-fetch": "^2.6.1",
     "pg": "^8.6.0",
     "request": "^2.88.2",
     "sequelize": "^6.6.2"
