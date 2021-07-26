@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export default function ArticleDisplayAll(){
+export default function ArticleDisplayAll() {
+
     const [listOfArticles, setListOfArticles] = useState([]);
 
     useEffect(() => {
@@ -9,6 +10,7 @@ export default function ArticleDisplayAll(){
             setListOfArticles(response.data);
         })
     }, [])
+
     return (
     <>
     <div>
@@ -18,7 +20,6 @@ export default function ArticleDisplayAll(){
                 <div className="name"> name : {value.name}</div>
                 <div className="description">description: {value.description}</div>
                 <div className="price">price : {value.price}</div>
-                <div className="quantity">quantity : {value.quantity}</div>
                 <div className="traderId">traderId : {value.traderId}</div>
                 <br></br>
             </div>

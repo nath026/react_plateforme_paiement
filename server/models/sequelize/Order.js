@@ -8,7 +8,7 @@ class Order extends Model {}
 Order.init(
   // Schema
   {
-    totalPrice: DataTypes.INTEGER,
+    subTotal: DataTypes.INTEGER,
   },
   {
     sequelize: connection,

@@ -5,7 +5,7 @@ import { useState } from "react";
 
 
 export default function ArticleRegister(){
-    const [value, setValue] = React.useState('')
+    const [setValue] = React.useState('')
     const handleChange = (event) => {
         setValue(event.target.value)
     }
@@ -14,7 +14,6 @@ export default function ArticleRegister(){
         name: "",
         description: "",
         price: "",
-        quantity: "",
         updatedAt:"",
         createdAt:"",
         token: localStorage.getItem("jwt"),
@@ -58,13 +57,6 @@ export default function ArticleRegister(){
                     id="inputSaveArticle"
                     name="price"
                     placeholder="12"
-                />
-                 <label>quantity</label>
-                <Field 
-                    autocomplete="off"
-                    id="inputSaveArticle"
-                    name="quantity"
-                    placeholder="quantity"
                 />
                   <label>CreatedAt </label>
                 <Field 

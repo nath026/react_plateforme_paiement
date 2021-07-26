@@ -10,7 +10,6 @@ Article.init(
     name: DataTypes.STRING,
     description: DataTypes.STRING,
     price: DataTypes.BIGINT,
-    quantity: DataTypes.BIGINT,
   },
   {
     sequelize: connection,

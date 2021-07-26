@@ -5,6 +5,7 @@ const TraderRouter = require("./routes/TraderRouter");
 const app = express();
 const cors = require("cors");
 const ArticleRouter = require("./routes/ArticleRouter");
+const OrderRouter = require("./routes/OrderRouter");
 
 // app.set('views', `${__dirname}/views`);
 
@@ -23,5 +24,7 @@ app.post('/transactions', (req, res) => {
 app.use("/traders", TraderRouter);
 
 app.use("/articles", ArticleRouter);
+
+app.use("/order", OrderRouter);
 
 app.listen(process.env.PORT || 3000, () => console.log('server is listening'));

@@ -5,6 +5,7 @@ const User = require('./User');
 const Article = require('./Article');
 const Trader = require('./Trader');
 const Order = require('./Order');
+const Item = require('./Item');
 const TraderArticle = require('../mongo/TraderArticle');
 const connection = require('../../lib/sequelize');
 
@@ -36,29 +37,40 @@ const denormalizeOrder = (order) => {
   Order.findByPk(order.id).then((data) => data.toJSON()).save();
 };
 
+const denormalizeItem = (item) => {
+  Item.findByPk(item.id).then((data) => data.toJSON()).save();
+};
+
 async function init() {
   Order.addHook('afterUpdate', denormalizeOrder);
   Order.addHook('afterCreate', denormalizeOrder);
+  Item.addHook('afterUpdate', denormalizeItem);
+  Item.addHook('afterCreate', denormalizeItem);
   Trader.addHook('afterUpdate', denormalizeTrader);
   Trader.addHook('afterCreate', denormalizeTrader);
   Article.addHook('afterUpdate', (article) => denormalizeUser(article.author));
   Article.addHook('afterCreate', (article) => denormalizeUser(article.author));
 
+  // One to many (Article to trader)
   Trader.MyArticles = Trader.hasMany(Article, {
     as: 'myArticles',
     foreignKey: 'traderID',
   });
-
-  // relations
   Article.belongsTo(Trader, { as: 'trader' });
-  Transaction.hasMany(Article);
 
+  // Many To Many (Card et Article)
+  Order.belongsToMany(Article, { as: 'items', through: 'ArticlesOrder' });
+  Article.belongsToMany(Order, { as: 'cartId', through: 'ArticlesOrder' });
+  Article.belongsToMany(Item, { as: 'productId', through: 'ArticlesItem'})
+  Item.belongsToMany(Article, { as: 'articleItemId', through: 'ArticlesItem'})
+
+  // One to one ( order has one transaction, a transaction has one order)
   Order.hasOne(Transaction);
 
-  Article.belongsTo(Transaction, { as: 'multipleArticle' });
-  Transaction.hasMany(Article);
+  Order.belongsToMany(Item, {as: 'itemss', through: 'OrdersItem'});
+  Item.belongsToMany(Order, {as: 'orders', through: 'OrdersItem'});
 
-  await connection.sync({ force: false });
+  await connection.sync({ force: true });
   console.log('Database sync');
 }
 
@@ -70,4 +82,5 @@ module.exports = {
   Trader,
   Order,
   Transaction,
+  Item,
 };
