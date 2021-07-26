@@ -9,6 +9,7 @@ const app = express();
 
 const TraderRouter = require('./routes/TraderRouter');
 const ArticleRouter = require('./routes/ArticleRouter');
+const CredentialRouter = require('./routes/CredentialRouter');
 
 // app.set('views', `${__dirname}/views`);
 
@@ -27,6 +28,8 @@ app.post('/transactions', (req, res) => {
 app.use('/traders', TraderRouter);
 
 app.use('/articles', ArticleRouter);
+
+app.use('/credentials', CredentialRouter);
 
 // test permission role admin
 app.get('/admin/test', authRole(['ADMIN']), async (req, res) => {

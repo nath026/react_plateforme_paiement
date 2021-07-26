@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const { prettifyErrors } = require('../lib/utils');
 const { Credentials } = require('../models/sequelize');
+const { Trader } = require('../models/sequelize');
 
 const router = Router();
 
@@ -23,7 +24,7 @@ router
   // Affichage d'un credential
   .get('/:id', (req, res) => {
     const { id } = req.params;
-    User.findByPk(id)
+    Credentials.findByPk(id)
       .then((data) => (data !== null ? res.json(data) : res.sendStatus(404)))
       .catch((e) => res.sendStatus(500));
   })
