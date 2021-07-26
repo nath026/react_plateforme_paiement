@@ -7,6 +7,7 @@ const Trader = require('./Trader');
 const Order = require('./Order');
 const TraderArticle = require('../mongo/TraderArticle');
 const connection = require('../../lib/sequelize');
+const Credentials = require('./Credentials');
 
 const denormalizeUser = (user) => {
   User.findByPk(user.id, {
@@ -54,6 +55,9 @@ async function init() {
   Transaction.hasMany(Article);
 
   Order.hasOne(Transaction);
+  Credentials.hasOne(Trader, {
+    as: 'traderId',
+  });
 
   Article.belongsTo(Transaction, { as: 'multipleArticle' });
   Transaction.hasMany(Article);
