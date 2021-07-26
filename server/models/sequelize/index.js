@@ -56,7 +56,7 @@ async function init() {
 
   Order.hasOne(Transaction);
   Credentials.hasOne(Trader, {
-    as: 'traderId',
+    as: 'trader',
   });
 
   Article.belongsTo(Transaction, { as: 'multipleArticle' });
@@ -75,4 +75,5 @@ module.exports = {
   Trader,
   Order,
   Transaction,
+  Credentials,
 };
