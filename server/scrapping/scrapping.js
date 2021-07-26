@@ -1,4 +1,5 @@
 const https = require('https');
+const fs = require('fs');
 
 function euroData() {
   const url = 'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/eur.json';
@@ -29,7 +30,13 @@ function euroData() {
     res.on('end', () => {
       try {
         const parsedData = JSON.parse(rawData);
-        console.log(parsedData);
+        // console.log('ici', parsedData.eur);
+        const convert = {
+          YEN: parsedData.eur.jpy,
+          USD: parsedData.eur.usd,
+        };
+        const convertJson = JSON.stringify(convert);
+        fs.writeFileSync('convertEuro.json', convertJson);
       } catch (e) {
         console.error(e.message);
       }
@@ -39,26 +46,29 @@ function euroData() {
   });
 }
 
-// euroData();
-// const test = [];
-
-// const euroArray = () => {
-//   request(url, (error, response, body) => {
-//     if (!error && response.statusCode === 200) {
-//       const euro = JSON.parse(body);
-//       console.log('Got a response: ', euro.eur.jpy);
-
-//       test.push(euro.eur.jpy);
-//       test.push(euro.eur.usd);
-//       // console.log(test);
-//       return test;
-//     }
-//     console.log('Got an error: ', error, ', status code: ', response.statusCode);
-//   });
-// };
-
-// console.log(test);
-
-module.exports = {
-  euroData,
-};
+function getDatafromFile() {
+  const path = './convertEuro.json';
+  euroData();
+  try {
+    if (fs.existsSync(path)) {
+      fs.readFile(path, (err, data) => {
+        if (err) throw err;
+        const test = JSON.parse(data);
+        console.log('here', test);
+      });
+    } else {
+      console.log('doesn t exist');
+      euroData();
+      if (fs.existsSync(path)) {
+        fs.readFile(path, (err, data) => {
+          if (err) throw err;
+          const test = JSON.parse(data);
+          console.log('here', test);
+        });
+      }
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}
+getDatafromFile();
