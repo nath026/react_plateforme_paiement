@@ -25,9 +25,6 @@ async function getData(date) {
   if (reponse.status >= 300) throw new Error('Something went wrong');
   // save the data in an array
   const dataFetch = await reponse.json();
-  console.log(date);
-  console.log('yen : ', dataFetch.eur.jpy);
-  console.log('usd : ', dataFetch.eur.usd);
 
   const euroDateData = {
     date: new Date(date),
