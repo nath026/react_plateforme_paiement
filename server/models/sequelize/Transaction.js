@@ -10,6 +10,9 @@ Transaction.init(
     price: DataTypes.BIGINT,
     addressFacturation: DataTypes.STRING,
     addressLivraison: DataTypes.STRING,
+    date: DataTypes.DATE,
+    currency: DataTypes.ENUM(['EUR','YEN','USD']),
+    state: DataTypes.ENUM(['PENDING', 'ACCEPTED', 'VALIDATED']),
   },
   {
     sequelize: connection,

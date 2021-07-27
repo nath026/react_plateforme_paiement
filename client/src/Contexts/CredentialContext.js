@@ -13,24 +13,24 @@ export default function CredentialProvider({ children }) {
     JSON.parse(localStorage.getItem("credential") || "null")
   );
 
-  const save = (traderToken, traderSecret) => {
+  const save = (clientId, clientSecret) => {
     localStorage.setItem(
       "credential",
       JSON.stringify({
-        traderToken,
-        traderSecret,
+        clientId,
+        clientSecret,
       })
     );
     setCredential({
-      traderToken,
-      traderSecret,
+      clientId,
+      clientSecret,
     });
   };
 
   // base64(username:password)
   const token = useMemo(
     () =>
-      credential && btoa(`${credential.traderToken}:${credential.traderSecret}`),
+      credential && btoa(`${credential.clientId}:${credential.clientSecret}`),
     [credential]
   );
 
