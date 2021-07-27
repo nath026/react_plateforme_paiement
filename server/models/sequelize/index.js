@@ -47,23 +47,26 @@ async function init() {
 
   Trader.MyArticles = Trader.hasMany(Article, {
     as: 'myArticles',
-    foreignKey: 'traderID',
+    foreignKey: 'traderId',
   });
 
   // relations
   Article.belongsTo(Trader, { as: 'trader' });
   Transaction.hasMany(Article);
 
-  Order.hasOne(Transaction);
-  Credentials.hasOne(Trader, {
-    as: 'trader',
+  Order.hasOne(Transaction, {
+    foreignKey: 'transactionId',
   });
+  Transaction.belongsTo(Order);
+
+  Trader.hasMany(Credentials);
+  Credentials.belongsTo(Trader);
 
   Article.belongsTo(Transaction, { as: 'multipleArticle' });
   Transaction.hasMany(Article);
 
   // a mettre a true quand on change les entités
-  await connection.sync({ force: false });
+  await connection.sync({ force: true });
   console.log('Database sync');
 }
 

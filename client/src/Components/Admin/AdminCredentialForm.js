@@ -1,4 +1,10 @@
 import React, { useState } from "react";
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
 const defaultV = {
   token: "",
@@ -40,7 +46,7 @@ export default function CredentialsForm({ onSubmit, defaultValues }) {
         type="password"
         name="secret"
       />
-      <Button title="Submit Form" />
+      <button > Générer les credentials</button>
     </form>
   );
 }

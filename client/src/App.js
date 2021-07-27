@@ -9,6 +9,8 @@ import TraderRegister from "./Components/Trader/TraderRegister";
 import ArticleDisplayAll from './Components/Article/ArticleDisplayAll';
 import ArticleRegister from "./Components/Article/ArticleRegister";
 import TraderTest from './Components/Trader/TraderTest';
+import AdminCredentialForm from './Components/Admin/AdminCredentialForm';
+import TraderDisplayCredentials from './Components/Trader/TraderDisplayCredential';
 
 
 function App() {
@@ -21,7 +23,15 @@ function App() {
             <br></br>
             <Link to="/article"> Show All Articles</Link>
             <Link to="/article-register"> Add Articles</Link>
+            <Link to="/credentials/all"> Show All Credentials</Link>
+            <Link to="/credentials"> Show Credentials</Link>
                 <Switch>
+                    <Route exact path="/credentials/all">
+                        <TraderDisplayCredentials/>
+                    </Route>
+                    <Route exact path="/credentials">
+                        <AdminCredentialForm/>
+                    </Route>
                     <Route exact path="/shop">
                         <Home/>
                         <Shop/>
