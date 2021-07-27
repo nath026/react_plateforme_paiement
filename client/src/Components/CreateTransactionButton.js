@@ -9,32 +9,21 @@ export default function CreateTransactionButton() {
 
   const createTransaction = () => {
     const data = {
-      consumer: {
-        lastname: "Foo",
-        firstname: "Bart",
-      },
-      billingAddress: {
-        address: "1 rue Bouvier",
-        zipCode: "75011",
-        city: "Paris",
-        country: "France",
-      },
-      cart: list,
-      totalPrice,
+      firstName: "mathieu",
+      lastName: "pionnier",
+      price: totalPrice,
+      addressFacturation: "Paris",
+      addressLivraison: "Paris",
+      date: "2020-12-21",
       currency: "EUR",
-      shippingAddress: {
-        address: "1 rue Bouvier",
-        zipCode: "75011",
-        city: "Paris",
-        country: "France",
-      },
-    };
+      state: "PENDING",
+  }
 
-    fetch("http://localhost:3001/transactions", {
+    fetch("http://localhost:3000/transactions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Basic " + token,
+        // Authorization: "Basic " + token,
       },
       body: JSON.stringify(data),
     })
