@@ -6,6 +6,7 @@ const Trader = require('./Trader');
 const Order = require('./Order');
 const TraderArticle = require('../mongo/TraderArticle');
 const connection = require('../../lib/sequelize');
+const Credentials = require('./Credentials');
 
 const denormalizeTrader = (trader) => {
   Trader.findByPk(trader.id, {
@@ -52,6 +53,9 @@ async function init() {
   Transaction.hasMany(Article);
 
   Order.hasOne(Transaction);
+  Credentials.hasOne(Trader, {
+    as: 'trader',
+  });
 
   Article.belongsTo(Transaction, { as: 'multipleArticle' });
   Transaction.hasMany(Article);
@@ -68,4 +72,5 @@ module.exports = {
   Order,
   Trader,
   Transaction,
+  Credentials,
 };
