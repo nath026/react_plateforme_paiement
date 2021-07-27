@@ -61,3 +61,15 @@ async function main() {
   }
 }
 main().catch(console.error);
+
+/* // TODO
+  MongoCompass :
+  create a new collection on app
+  import data with a json file
+  use the euroConvertData.json
+  Terminal :
+  docker exec -it react_plateforme_paiement_mongo_1 bash
+  -> open the mongo container command bash
+  mongo --authenticationDatabase admin --host localhost -u root -p password
+  -> auth to mongodb to display, and exec mongo command
+*/
