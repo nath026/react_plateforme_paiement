@@ -27,13 +27,11 @@ router
       .catch((e) => {
         if (e.name === 'SequelizeValidationError') {
           res.status(400).json(prettifyErrors(e));
-        } 
-        //else console.error(e) || res.sendStatus(500);
-        else {
-            console.log(e);
-            res.json({
-                error: "erreur dans la sauvegarde"
-            })
+        } else {
+          console.log(e);
+          res.json({
+            error: 'erreur dans la sauvegarde',
+          });
         }
       });
   })
@@ -42,6 +40,6 @@ router
     Transaction.findByPk(id)
       .then((data) => (data !== null ? res.json(data) : res.sendStatus(404)))
       .catch((e) => res.sendStatus(500));
-  })
+  });
 
 module.exports = router;

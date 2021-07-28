@@ -30,7 +30,11 @@ const denormalizeOrder = (order) => {
 };
 
 const denormalizeTransaction = (transaction) => {
-  Transaction.findByPk(transaction.id).then((data) => data.toJSON()).save();
+  // Transaction.findByPk(transaction.id).then((data) => data.toJSON()).save();
+  Transaction.findByPk(transaction.id).then((data) => {
+    const denormalizedTransaction = data.toJSON();
+    console.log('WWWWW', denormalizedTransaction);
+  });
 };
 
 async function init() {
@@ -58,10 +62,10 @@ async function init() {
   });
 
   Article.belongsTo(Transaction, { as: 'multipleArticle' });
-  Transaction.hasMany(Article);
+  // Transaction.hasMany(Article);
 
   // a mettre a true quand on change les entités
-  await connection.sync({ force: false });
+  await connection.sync({ force: true });
   console.log('Database sync');
 }
 

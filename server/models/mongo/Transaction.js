@@ -1,5 +1,5 @@
 const { Schema } = require('mongoose');
-const { INTEGER } = require('sequelize/types');
+// const { INTEGER } = require('sequelize/types');
 const conn = require('../../lib/mongo');
 
 const TransactionSchema = new Schema({
@@ -11,13 +11,13 @@ const TransactionSchema = new Schema({
   date: Date,
   currency: {
     type: String,
-    enum : ['EUR', 'YEN', 'USD'],
-    default: 'EUR'
+    enum: ['EUR', 'YEN', 'USD'],
+    default: 'EUR',
   },
   state: {
     type: String,
-    enum : ['PENDING', 'ACCEPTED', 'VALIDATED'],
-    default: 'PENDING'
+    enum: ['PENDING', 'ACCEPTED', 'VALIDATED'],
+    default: 'PENDING',
   },
 });
 
