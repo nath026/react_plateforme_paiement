@@ -52,10 +52,13 @@ async function init() {
   Article.belongsTo(Trader, { as: 'trader' });
   Transaction.hasMany(Article);
 
-  Order.hasOne(Transaction);
-  Credentials.hasOne(Trader, {
-    as: 'trader',
+  Order.hasOne(Transaction, {
+    foreignKey: 'transactionId',
   });
+  Transaction.belongsTo(Order);
+
+  Trader.hasMany(Credentials);
+  Credentials.belongsTo(Trader);
 
   Article.belongsTo(Transaction, { as: 'multipleArticle' });
   Transaction.hasMany(Article);
