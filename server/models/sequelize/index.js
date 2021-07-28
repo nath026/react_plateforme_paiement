@@ -31,11 +31,10 @@ const denormalizeOrder = (order) => {
 
 const denormalizeTransaction = (transaction) => {
   // Transaction.findByPk(transaction.id).then((data) => data.toJSON()).save();
-  Transaction.findByPk(transaction.id).then((data) => { 
-    const denormalizedTransaction = data.toJSON() 
+  Transaction.findByPk(transaction.id).then((data) => {
+    const denormalizedTransaction = data.toJSON();
     console.log('WWWWW', denormalizedTransaction);
   });
-  
 };
 
 async function init() {

@@ -46,9 +46,9 @@ export default function Transaction(){
 
     }
     return (
-       <>
-       <div className="transactionForm">
-       <Formik initialValues={initialValues} onSubmit={onSubmit}>
+        <>
+        <div className="transactionForm">
+        <Formik initialValues={initialValues} onSubmit={onSubmit}>
        {/* validationSchema={validationSchema} */}
             <Form>
                 <label>Prénom : </label>
@@ -59,40 +59,40 @@ export default function Transaction(){
                     name="firstName"
                     placeholder="Prénom"
                 />
-                 <label>Nom : </label>
-                 <ErrorMessage name="firstName" component="span" />
+                <label>Nom : </label>
+                <ErrorMessage name="firstName" component="span" />
                 <Field 
                     autocomplete="off"
                     id="inputTransactionLastName"
                     name="lastName"
                     placeholder="Nom"
                 />
-                 <label>Prix </label>
+                <label>Prix </label>
                 <Field 
                     autocomplete="off"
                     id="inputTransactionPrice"
                     name="price"
-                    // value={totalPrice}
+                    value={totalPrice}
                     // disabled
                 />
-                 <label>Adresse de facturation </label>
-                 <ErrorMessage name="addressFacturation" component="span" />
+                <label>Adresse de facturation </label>
+                <ErrorMessage name="addressFacturation" component="span" />
                 <Field 
                     autocomplete="off"
                     id="inputTransactionFacturation"
                     name="addressFacturation"
                     placeholder="4 rue de Paris"
                 />
-                 <label>Adresse de livraison </label>
-                 <ErrorMessage name="addressLivraison" component="span" />
+                <label>Adresse de livraison </label>
+                <ErrorMessage name="addressLivraison" component="span" />
                 <Field 
                     autocomplete="off"
                     id="inputTransactionLivraison"
                     name="addressLivraison"
                     placeholder="4 rue de Paris"
                 />
-                 <label>Date</label>
-                 <ErrorMessage name="date" component="span" />
+                <label>Date</label>
+                <ErrorMessage name="date" component="span" />
                 <Field 
                     autocomplete="off"
                     id="inputTransactionDate"
@@ -100,16 +100,16 @@ export default function Transaction(){
                     placeholder="2921-07-29"
                     type="date"
                 />
-                  <label>currency </label>
-                  <ErrorMessage name="currency" component="span" />
+                <label>currency </label>
+                <ErrorMessage name="currency" component="span" />
                 <Field 
                     autocomplete="off"
                     id="inputTransactionCurrency"
                     name="currency"
                     placeholder="Currency"
                 />
-                  <label>state </label>
-                  <ErrorMessage name="updatedAt" component="span" />
+                <label>state </label>
+                <ErrorMessage name="updatedAt" component="span" />
                 <Field 
                     autocomplete="off"
                     id="inputTransactionState"
@@ -118,12 +118,11 @@ export default function Transaction(){
                 />
                 <button type="submit"> Envoyer </button>
             </Form>
-       </Formik>
-       </div>
-       </>
+        </Formik>
+        </div>
+        </>
     );
 }
-
 
 // <Field 
 // autocomplete="off"

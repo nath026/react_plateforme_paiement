@@ -16,15 +16,15 @@ Transaction.init(
     addressLivraison: DataTypes.STRING,
     date: DataTypes.DATE,
     currency: {
-      type: DataTypes.ENUM(['EUR','YEN','USD']),
+      type: DataTypes.ENUM(['EUR', 'YEN', 'USD']),
       allowNull: false,
       defaultValue: 'EUR',
     },
     state: {
-      type : DataTypes.ENUM(['PENDING', 'ACCEPTED', 'VALIDATED']),
+      type: DataTypes.ENUM(['PENDING', 'ACCEPTED', 'VALIDATED']),
       allowNull: false,
       defaultValue: 'PENDING',
-    }
+    },
 
   },
   {
