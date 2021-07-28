@@ -64,7 +64,7 @@ async function init() {
   Transaction.hasMany(Article);
 
   // a mettre a true quand on change les entités
-  await connection.sync({ force: true });
+  await connection.sync({ force: false });
   console.log('Database sync');
 }
 
