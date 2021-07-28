@@ -10,9 +10,10 @@ import Transactions from "./Components/Transactions";
 // import ArticleDisplayAll from './Components/Article/ArticleDisplayAll';
 // import ArticleRegister from "./Components/Article/ArticleRegister";
 // import TraderTest from './Components/Trader/TraderTest';
-// import Page from "./Components/Page";
-// import Header from "./Components/Header";
-// import ShowItem from "./Components/Cart/ShowItem";
+import ListProvider from "./Contexts/ListContext";
+import Page from "./Components/Page";
+import Header from "./Components/Header";
+import ShowItem from "./Components/Cart/ShowItem";
 import TraderTest from './Components/Trader/TraderTest';
 import AdminDisplayAllCredentials from './Components/Admin/AdminDisplayAllCredentials';
 import Credentials from './Components/Admin/Credentials';
@@ -69,6 +70,19 @@ function App() {
                         <Home/>
                         <Transactions />
                     </Route>
+                    <ListProvider>
+                        <Route exact path="/">
+                            <Page />
+                        </Route>
+                        <Route exact path="/items/:id">
+                            <Header />
+                            <ShowItem />
+                        </Route>
+                        <Route exact path="/transactions">
+                            <Home/>
+                            <Transactions />
+                        </Route>
+                    </ListProvider>
                 </Switch>
             </BrowserRouter>
         </div>

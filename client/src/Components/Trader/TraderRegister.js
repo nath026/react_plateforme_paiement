@@ -101,6 +101,7 @@ export default function TraderRegister(){
                     id="inputRegisterTrader"
                     name="createdAt"
                     placeholder="2020-12-21"
+                    type="date"
                 />
                   <label>Updated At </label>
                   <ErrorMessage name="updatedAt" component="span" />
@@ -109,6 +110,7 @@ export default function TraderRegister(){
                     id="inputRegisterTrader"
                     name="updatedAt"
                     placeholder="2020-12-21"
+                    type="date"
                 />
                 <button type="submit"> Envoyer </button>
             </Form>

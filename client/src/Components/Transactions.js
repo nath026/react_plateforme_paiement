@@ -1,4 +1,3 @@
-// import { Select, TextField, MenuItem, Button } from '@material-ui/core';
 import React from 'react';
 import { useContext } from "react";
 import { ListContext } from "../Contexts/ListContext";
@@ -8,13 +7,13 @@ import { useState } from "react";
 import * as Yup from 'yup';
 
 export default function Transaction(){
-    const { totalPrice } = useContext(ListContext);
+    // const { totalPrice } = useContext(ListContext);
     const [transaction, setTransaction] = React.useState('');
-    // const [setTransaction] = useState([]);
+    const [setValue] = useState([]);
 
-    // const handleChange = (event) => {
-    //     setValue(event.target.value)
-    // }
+    const handleChange = (event) => {
+        setValue(event.target.value)
+    }
 
     const initialValues = {
         firstName: "",
@@ -59,40 +58,40 @@ export default function Transaction(){
                     name="firstName"
                     placeholder="Prénom"
                 />
-                <label>Nom : </label>
-                <ErrorMessage name="firstName" component="span" />
+                    <label>Nom : </label>
+                    <ErrorMessage name="firstName" component="span" />
                 <Field 
                     autocomplete="off"
                     id="inputTransactionLastName"
                     name="lastName"
                     placeholder="Nom"
                 />
-                <label>Prix </label>
+                    <label>Prix </label>
                 <Field 
                     autocomplete="off"
                     id="inputTransactionPrice"
                     name="price"
-                    value={totalPrice}
+                    // value={totalPrice}
                     // disabled
                 />
-                <label>Adresse de facturation </label>
-                <ErrorMessage name="addressFacturation" component="span" />
+                    <label>Adresse de facturation </label>
+                    <ErrorMessage name="addressFacturation" component="span" />
                 <Field 
                     autocomplete="off"
                     id="inputTransactionFacturation"
                     name="addressFacturation"
                     placeholder="4 rue de Paris"
                 />
-                <label>Adresse de livraison </label>
-                <ErrorMessage name="addressLivraison" component="span" />
+                    <label>Adresse de livraison </label>
+                    <ErrorMessage name="addressLivraison" component="span" />
                 <Field 
                     autocomplete="off"
                     id="inputTransactionLivraison"
                     name="addressLivraison"
                     placeholder="4 rue de Paris"
                 />
-                <label>Date</label>
-                <ErrorMessage name="date" component="span" />
+                    <label>Date</label>
+                    <ErrorMessage name="date" component="span" />
                 <Field 
                     autocomplete="off"
                     id="inputTransactionDate"
@@ -100,36 +99,26 @@ export default function Transaction(){
                     placeholder="2921-07-29"
                     type="date"
                 />
-                <label>currency </label>
-                <ErrorMessage name="currency" component="span" />
+                    <label>currency </label>
+                    <ErrorMessage name="currency" component="span" />
                 <Field 
                     autocomplete="off"
                     id="inputTransactionCurrency"
                     name="currency"
                     placeholder="Currency"
                 />
-                <label>state </label>
-                <ErrorMessage name="updatedAt" component="span" />
+                    <label>state </label>
+                    <ErrorMessage name="updatedAt" component="span" />
                 <Field 
                     autocomplete="off"
                     id="inputTransactionState"
                     name="state"
                     placeholder="state"
                 />
-                <button type="submit"> Envoyer </button>
+                <button type="submit"> Valider la transaction </button>
             </Form>
         </Formik>
         </div>
         </>
     );
 }
-
-// <Field 
-// autocomplete="off"
-// id="inputRegisterTrader"
-// name="devise"
-// as="select"
-// ><option value="EUR">EUR</option>
-// <option value="YEN">YEN</option>
-// <option value="USD">USD</option>
-// </Field>
