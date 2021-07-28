@@ -9,11 +9,11 @@ import TableRow from '@material-ui/core/TableRow';
 import AdminCredentialForm from '../Admin/AdminCredentialForm';
 
 
-export default function TraderDisplayCredentials(){
+export default function TraderDisplayCredentials({traderId}){
     const [listOfCredentials, setListOfCredentials] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:3000/credentials/`${traderId}`").then((response) => {
+        axios.get(`http://localhost:3000/credentials/${traderId}`).then((response) => {
             setListOfCredentials(response.data);
         })
     }, [])
