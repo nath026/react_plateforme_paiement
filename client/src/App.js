@@ -7,22 +7,14 @@ import AdminLogin from "./Components/Admin/AdminLogin";
 import TraderDisplayAll from './Components/Trader/TraderDisplayAll';
 import TraderRegister from "./Components/Trader/TraderRegister";
 
-import ArticleDisplayAll from './Components/Article/ArticleDisplayAll';
-import ArticleRegister from "./Components/Article/ArticleRegister";
+
 import TraderTest from './Components/Trader/TraderTest';
 import AdminDisplayAllCredentials from './Components/Admin/AdminDisplayAllCredentials';
-import CredentialProvider from './Contexts/CredentialContext';
 import Credentials from './Components/Admin/Credentials';
-=======
-// import ArticleDisplayAll from './Components/Article/ArticleDisplayAll';
-// import ArticleRegister from "./Components/Article/ArticleRegister";
-// import TraderTest from './Components/Trader/TraderTest';
-import Page from "./Components/Page";
-import Header from "./Components/Header";
-import ShowItem from "./Components/Cart/ShowItem";
-import Credentials from "./Components/Admin/Credentials";
+
 import CredentialProvider from "./Contexts/CredentialContext";
-import ListProvider from "./Contexts/ListContext";
+
+
 
 function App() {
     return (
@@ -32,10 +24,8 @@ function App() {
             <Link to="/traderlogin"> Login as Trader</Link>
             <Link to="/traderregister"> Register as Trader</Link>
             <br></br>
-            <Link to="/article"> Show All Articles</Link>
-            <Link to="/article-register"> Add Articles</Link>
             <Link to="/credentials/all"> Show All Credentials</Link>
-            <Link to="/credentials"> Show Credentials</Link>
+            <Link to="/credentials"> Show my Credentials</Link>
             <CredentialProvider>
                 <Switch>
                 <Route exact path="/credentials/all">
@@ -70,17 +60,9 @@ function App() {
                         <Home/>
                         <AdminLogin/>
                     </Route>
-                    <Route exact path="/article">
-                        <Home/>
-                        <ArticleDisplayAll/>
-                    </Route>
                     <Route exact path="/test">
                         <Home/>
                         <TraderTest/>
-                    </Route>
-                    <Route exact path="/article-register">
-                        <Home/>
-                        <ArticleRegister/>
                     </Route>
                 </Switch>
 

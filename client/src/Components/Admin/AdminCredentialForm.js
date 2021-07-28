@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Button from "../lib/Button";
+import axios from "axios";
+
 
 const defaultV = {
   token: "",
@@ -8,9 +10,13 @@ const defaultV = {
 
 export default function CredentialsForm({ onSubmit, defaultValues }) {
   const [values, setValues] = useState(defaultValues || defaultV);
+  const [listOfCredentials, setListOfCredentials] = useState([]);
 
   const _onSubmit = () => {
     onSubmit({ ...values });
+    axios.post("http://localhost:3000/credentials", values).then((response) => {
+      setListOfCredentials(response.values);
+    })
   };
 
   const handleChange = (event) => {
