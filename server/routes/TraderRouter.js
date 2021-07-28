@@ -7,7 +7,6 @@ const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { prettifyErrors } = require('../lib/utils');
 const { Trader } = require('../models/sequelize');
-const { restore } = require('../models/sequelize/User');
 
 const router = Router();
 

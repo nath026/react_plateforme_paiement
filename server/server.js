@@ -9,6 +9,7 @@ const app = express();
 
 const TraderRouter = require('./routes/TraderRouter');
 const ArticleRouter = require('./routes/ArticleRouter');
+const TransactionRouter = require('./routes/TransactionRouter');
 const CredentialRouter = require('./routes/CredentialRouter');
 
 // app.set('views', `${__dirname}/views`);
@@ -21,9 +22,11 @@ app.post('/', (req, res) => {
   res.sendStatus(200);
 });
 
-app.post('/transactions', (req, res) => {
-  res.status(201).json(req.body);
-});
+// app.post('/transactions', (req, res) => {
+//   res.status(201).json(req.body);
+// });
+
+app.use('/transactions', TransactionRouter);
 
 app.use('/traders', TraderRouter);
 

@@ -10,3 +10,4 @@ function Button({ title, ...rest }) {
 }
 
 export default Button;
+

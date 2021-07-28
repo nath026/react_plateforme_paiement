@@ -6,12 +6,23 @@ import TraderLogin from "./Components/Trader/TraderLogin";
 import AdminLogin from "./Components/Admin/AdminLogin";
 import TraderDisplayAll from './Components/Trader/TraderDisplayAll';
 import TraderRegister from "./Components/Trader/TraderRegister";
+
 import ArticleDisplayAll from './Components/Article/ArticleDisplayAll';
 import ArticleRegister from "./Components/Article/ArticleRegister";
 import TraderTest from './Components/Trader/TraderTest';
 import AdminDisplayAllCredentials from './Components/Admin/AdminDisplayAllCredentials';
 import CredentialProvider from './Contexts/CredentialContext';
 import Credentials from './Components/Admin/Credentials';
+=======
+// import ArticleDisplayAll from './Components/Article/ArticleDisplayAll';
+// import ArticleRegister from "./Components/Article/ArticleRegister";
+// import TraderTest from './Components/Trader/TraderTest';
+import Page from "./Components/Page";
+import Header from "./Components/Header";
+import ShowItem from "./Components/Cart/ShowItem";
+import Credentials from "./Components/Admin/Credentials";
+import CredentialProvider from "./Contexts/CredentialContext";
+import ListProvider from "./Contexts/ListContext";
 
 function App() {
     return (
@@ -72,6 +83,7 @@ function App() {
                         <ArticleRegister/>
                     </Route>
                 </Switch>
+
             </BrowserRouter>
         </div>
 

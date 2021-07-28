@@ -24,6 +24,7 @@ export default function CredentialProvider({ children }) {
     setCredential({
       token,
       secret,
+
     });
   };
 
@@ -31,6 +32,7 @@ export default function CredentialProvider({ children }) {
   const token = useMemo(
     () =>
       credential && btoa(`${credential.token}`),
+
     [credential]
   );
 
