@@ -38,33 +38,33 @@ const denormalizeTransaction = (transaction) => {
 };
 
 async function init() {
-  Order.addHook('afterUpdate', denormalizeOrder);
-  Order.addHook('afterCreate', denormalizeOrder);
-  Trader.addHook('afterUpdate', denormalizeTrader);
-  Trader.addHook('afterCreate', denormalizeTrader);
-  Article.addHook('afterUpdate', (article) => denormalizeTrader(article.traderId));
-  Article.addHook('afterCreate', (article) => denormalizeTrader(article.traderId));
-  Transaction.addHook('afterUpdate', denormalizeTransaction);
-  Transaction.addHook('afterCreate', denormalizeTransaction);
+  // Order.addHook('afterUpdate', denormalizeOrder);
+  // Order.addHook('afterCreate', denormalizeOrder);
+  // Trader.addHook('afterUpdate', denormalizeTrader);
+  // Trader.addHook('afterCreate', denormalizeTrader);
+  // Article.addHook('afterUpdate', (article) => denormalizeTrader(article.traderId));
+  // Article.addHook('afterCreate', (article) => denormalizeTrader(article.traderId));
+  // Transaction.addHook('afterUpdate', denormalizeTransaction);
+  // Transaction.addHook('afterCreate', denormalizeTransaction);
 
-  Trader.MyArticles = Trader.hasMany(Article, {
-    as: 'myArticles',
-    foreignKey: 'traderId',
-  });
+  // Trader.MyArticles = Trader.hasMany(Article, {
+  //   as: 'myArticles',
+  //   foreignKey: 'traderId',
+  // });
 
-  // relations
-  Article.belongsTo(Trader, { as: 'trader' });
-  Transaction.hasMany(Article);
+  // // relations
+  // Article.belongsTo(Trader, { as: 'trader' });
+  // Transaction.hasMany(Article);
 
-  Order.hasOne(Transaction, {
-    foreignKey: 'transactionId',
-  });
-  Transaction.belongsTo(Order);
+  // Order.hasOne(Transaction, {
+  //   foreignKey: 'transactionId',
+  // });
+  // Transaction.belongsTo(Order);
 
-  Trader.hasMany(Credentials);
-  Credentials.belongsTo(Trader);
+  // Trader.hasMany(Credentials);
+  // Credentials.belongsTo(Trader);
 
-  Article.belongsTo(Transaction, { as: 'multipleArticle' });
+  // Article.belongsTo(Transaction, { as: 'multipleArticle' });
   // Transaction.hasMany(Article);
 
   // a mettre a true quand on change les entités
