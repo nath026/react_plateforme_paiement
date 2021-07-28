@@ -12,6 +12,7 @@ const TraderRouter = require('./routes/TraderRouter');
 const ArticleRouter = require('./routes/ArticleRouter');
 const TransactionRouter = require('./routes/TransactionRouter');
 const CredentialRouter = require('./routes/CredentialRouter');
+const PspRouter = require('./routes/PspRouter');
 
 // app.set('views', `${__dirname}/views`);
 
@@ -35,6 +36,7 @@ app.use('/articles', ArticleRouter);
 
 app.use('/credentials', CredentialRouter);
 
+app.use('/psp', PspRouter);
 // test permission role admin
 app.get('/admin/test', authRole(['ADMIN']), async (req, res) => {
   res.json({ message: 'hello admin' });
