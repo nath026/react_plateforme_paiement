@@ -6,6 +6,7 @@ import TraderLogin from "./Components/Trader/TraderLogin";
 import AdminLogin from "./Components/Admin/AdminLogin";
 import TraderDisplayAll from './Components/Trader/TraderDisplayAll';
 import TraderRegister from "./Components/Trader/TraderRegister";
+import Transactions from "./Components/Transactions";
 // import ArticleDisplayAll from './Components/Article/ArticleDisplayAll';
 // import ArticleRegister from "./Components/Article/ArticleRegister";
 // import TraderTest from './Components/Trader/TraderTest';
@@ -60,6 +61,10 @@ function App() {
                             <Route exact path="/items/:id">
                                 <Header />
                                 <ShowItem />
+                            </Route>
+                            <Route exact path="/transactions">
+                                <Home/>
+                                <Transactions />
                             </Route>
                         </ListProvider>
                         {/* <Route exact path="/article">

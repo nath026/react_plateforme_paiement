@@ -7,12 +7,25 @@ Transaction.init(
   {
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
-    price: DataTypes.BIGINT,
+    price: {
+      type: DataTypes.BIGINT,
+      allowNull: false,
+      defaultValue: 0,
+    },
     addressFacturation: DataTypes.STRING,
     addressLivraison: DataTypes.STRING,
     date: DataTypes.DATE,
-    currency: DataTypes.ENUM(['EUR','YEN','USD']),
-    state: DataTypes.ENUM(['PENDING', 'ACCEPTED', 'VALIDATED']),
+    currency: {
+      type: DataTypes.ENUM(['EUR','YEN','USD']),
+      allowNull: false,
+      defaultValue: 'EUR',
+    },
+    state: {
+      type : DataTypes.ENUM(['PENDING', 'ACCEPTED', 'VALIDATED']),
+      allowNull: false,
+      defaultValue: 'PENDING',
+    }
+
   },
   {
     sequelize: connection,
