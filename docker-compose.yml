@@ -59,7 +59,7 @@ services:
     volumes:
       - ./psp:/home/node/app
     working_dir: /home/node/app
-    command: sh -c "npm install --no-update-notifier; npm run start --no-update-notifier"
+    command: sh -c "npm install --no-update-notifier; npm start --no-update-notifier"
 
 volumes:
   db-data: {}
