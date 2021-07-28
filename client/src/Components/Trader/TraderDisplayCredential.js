@@ -1,11 +1,19 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import AdminCredentialForm from '../Admin/AdminCredentialForm';
 
-export default function TraderDisplayCredentials(){
+
+export default function TraderDisplayCredentials({traderId}){
     const [listOfCredentials, setListOfCredentials] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:3000/credentials").then((response) => {
+        axios.get(`http://localhost:3000/credentials/${traderId}`).then((response) => {
             setListOfCredentials(response.data);
         })
     }, [])
@@ -27,13 +35,12 @@ export default function TraderDisplayCredentials(){
                       </TableRow>
                     ))}
                     <TableRow>
-                      <TableCell align="right"> <button>Générer des credentials </button></TableCell>
+                      <TableCell align="right"><AdminCredentialForm/></TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
               </TableContainer>
-            );
-        )
+            
     </>
     );
 }

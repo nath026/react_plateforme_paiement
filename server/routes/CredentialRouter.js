@@ -24,7 +24,11 @@ router
   // Affichage d'un credential
   .get('/:id', (req, res) => {
     const { id } = req.params;
-    Credentials.findByPk(id)
+    Credentials.findAll({
+      where: {
+        traderId: id
+      }
+    })
       .then((data) => (data !== null ? res.json(data) : res.sendStatus(404)))
       .catch((e) => res.sendStatus(500));
   })
