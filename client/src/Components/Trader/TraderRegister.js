@@ -64,11 +64,12 @@ export default function TraderRegister(){
                     placeholder="kbis"
                 />
                 <label>Devise </label>
-                <Field 
-                    autocomplete="off"
-                    id="inputRegisterTrader"
-                    name="devise"
-                />
+                 <Field  id="inputRegisterTrader"
+                    name="devise" as="select">
+                    <option value="red">EUR</option>
+                    <option value="green">YEN</option>
+                    <option value="blue">USD</option>
+                </Field>
                 <label>Contact Email </label>
                 <ErrorMessage name="contactEmail" component="span" />
                 <Field 

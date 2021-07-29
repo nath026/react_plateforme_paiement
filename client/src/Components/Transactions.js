@@ -23,7 +23,6 @@ export default function Transaction(){
         addressLivraison: "",
         date: "",
         currency: "",
-        state: "",
     }
 
     const validationSchema = Yup.object().shape({
@@ -101,20 +100,12 @@ export default function Transaction(){
                 />
                     <label>currency </label>
                     <ErrorMessage name="currency" component="span" />
-                <Field 
-                    autocomplete="off"
-                    id="inputTransactionCurrency"
-                    name="currency"
-                    placeholder="Currency"
-                />
-                    <label>state </label>
-                    <ErrorMessage name="updatedAt" component="span" />
-                <Field 
-                    autocomplete="off"
-                    id="inputTransactionState"
-                    name="state"
-                    placeholder="state"
-                />
+                <Field id="inputTransactionCurrency"
+                    name="currency" as="select">
+                    <option value="red">EUR</option>
+                    <option value="green">YEN</option>
+                    <option value="blue">USD</option>
+                </Field>
                 <button type="submit"> Valider la transaction </button>
             </Form>
         </Formik>
