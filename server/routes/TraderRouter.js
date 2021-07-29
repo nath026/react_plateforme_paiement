@@ -27,11 +27,12 @@ router
   })
 // Inscription d'un trader
   .post('/', (req, res) => {
+    console.log('show me req body!!!!!!!!!!!!!!!!!!!!!!!!!!', req.body);
     new Trader(req.body)
       .save()
       .then((data) => {
         res.status(201).json({ trader: data });
-        console.log('reeeeeeeeees', res);
+        console.log('reeeeeeeeees');
       })
       .catch((e) => {
         if (e.name === 'SequelizeValidationError') {

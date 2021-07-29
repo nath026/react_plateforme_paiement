@@ -23,6 +23,7 @@ export default function Transaction(){
         addressLivraison: "",
         date: "",
         currency: "",
+        state:"PENDING"
     }
 
     const validationSchema = Yup.object().shape({
@@ -102,9 +103,9 @@ export default function Transaction(){
                     <ErrorMessage name="currency" component="span" />
                 <Field id="inputTransactionCurrency"
                     name="currency" as="select">
-                    <option value="red">EUR</option>
-                    <option value="green">YEN</option>
-                    <option value="blue">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="YEN">YEN</option>
+                    <option value="USD">USD</option>
                 </Field>
                 <button type="submit"> Valider la transaction </button>
             </Form>

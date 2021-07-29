@@ -6,6 +6,7 @@ import { useState } from "react";
 import * as Yup from 'yup';
 
 export default function TraderRegister(){
+    
     const [value, setValue] = React.useState('')
     const handleChange = (event) => {
         setValue(event.target.value)
@@ -14,7 +15,7 @@ export default function TraderRegister(){
     const initialValues = {
         companyName: "",
         kbis: "",
-        devise: "",
+        devise: "EUR",
         contactEmail: "",
         username: "",
         password: "",
@@ -31,6 +32,7 @@ export default function TraderRegister(){
         updatedAt:Yup.date().required,
         createdAt:Yup.date().required
     })
+
 
     const [listOfTraders, setListOfTraders] = useState([]);
     const onSubmit = (data) => {
@@ -64,11 +66,12 @@ export default function TraderRegister(){
                     placeholder="kbis"
                 />
                 <label>Devise </label>
-                 <Field  id="inputRegisterTrader"
-                    name="devise" as="select">
-                    <option value="red">EUR</option>
-                    <option value="green">YEN</option>
-                    <option value="blue">USD</option>
+                <Field  id="inputRegisterTrader"
+                    name="devise" as="select"
+                    >
+                    <option value="EUR">EUR</option>
+                    <option value="YEN">YEN</option>
+                    <option value="USD">USD</option>
                 </Field>
                 <label>Contact Email </label>
                 <ErrorMessage name="contactEmail" component="span" />

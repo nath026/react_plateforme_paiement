@@ -21,17 +21,19 @@ router
       .catch((e) => res.sendStatus(500));
   })
   .post('/', (req, res) => {
+    console.log('show req body !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', req.body);
     new Transaction(req.body)
       .save()
-      .then((data) => res.status(201).json(data))
+      .then((data) => {
+        res.status(201).json();
+        console.log('reeeeeeeeees', res);
+      })
       .catch((e) => {
         if (e.name === 'SequelizeValidationError') {
           res.status(400).json(prettifyErrors(e));
         } else {
-          console.log(e);
-          res.json({
-            error: 'erreur dans la sauvegarde',
-          });
+          res.status(500).json('Error system');
+          console.error(e);
         }
       });
   })

@@ -1,11 +1,11 @@
 const { Schema } = require('mongoose');
 const conn = require('../../lib/mongo');
 
-const TraderArticleSchema = new Schema({
+const TraderSchema = new Schema({
   lastname: String,
   firstname: String,
   username: String,
-  myArticles: Array,
+  credentials: Array,
   companyName: String,
   kbis: String,
   devise: String,
@@ -15,10 +15,8 @@ const TraderArticleSchema = new Schema({
   role: String,
   confirmationURL: String,
   cancelUrL: String,
-  client_toke: String,
-  client_secret: String,
 });
 
-const TraderArticle = conn.model('TraderArticle', TraderArticleSchema);
+const Trader = conn.model('Trader', TraderSchema);
 
-module.exports = TraderArticle;
+module.exports = Trader;

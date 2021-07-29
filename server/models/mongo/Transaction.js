@@ -9,16 +9,8 @@ const TransactionSchema = new Schema({
   addressFacturation: String,
   addressLivraison: Array,
   date: Date,
-  currency: {
-    type: String,
-    enum: ['EUR', 'YEN', 'USD'],
-    default: 'EUR',
-  },
-  state: {
-    type: String,
-    enum: ['PENDING', 'ACCEPTED', 'VALIDATED'],
-    default: 'PENDING',
-  },
+  currency: String,
+  state: String,
 });
 
 const Transaction = conn.model('Transaction', TransactionSchema);

@@ -8,7 +8,7 @@ const router = Router();
 router
 
 // Affichage de tous les credentials
-.get('/', (req, res) => {
+  .get('/', (req, res) => {
     const { page = 1, perPage = 10, ...query } = req.query;
     Credentials.findAll({
       where: query,
@@ -26,8 +26,8 @@ router
     const { id } = req.params;
     Credentials.findAll({
       where: {
-        traderId: id
-      }
+        traderId: id,
+      },
     })
       .then((data) => (data !== null ? res.json(data) : res.sendStatus(404)))
       .catch((e) => res.sendStatus(500));
@@ -35,13 +35,20 @@ router
 
 // Création d'un credential
   .post('/', (req, res) => {
+    console.log('show me the req body!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', req.body);
     new Credentials(req.body)
       .save()
-      .then((data) => res.status(201).json(data))
+      .then((data) => {
+        res.status(201).json(data);
+        console.log('reeeeeeeeees', res);
+      })
       .catch((e) => {
         if (e.name === 'SequelizeValidationError') {
           res.status(400).json(prettifyErrors(e));
-        } else console.error(e) || res.sendStatus(500);
+        } else {
+          res.status(500).json('Error system');
+          console.error(e);
+        }
       });
   })
 
@@ -52,4 +59,4 @@ router
       .catch((e) => res.sendStatus(500));
   });
 
-  module.exports = router;
+module.exports = router;

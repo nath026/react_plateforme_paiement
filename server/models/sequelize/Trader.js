@@ -14,7 +14,11 @@ Trader.init(
       unique: true,
       allowNull: false,
     },
-    devise: DataTypes.ENUM(['EUR', 'USD', 'YEN']),
+    devise: {
+      type: DataTypes.ENUM(['EUR', 'USD', 'YEN']),
+      allowNull: false,
+      defaultValue: 'EUR',
+    },
     contactEmail: {
       type: DataTypes.STRING,
       unique: true,
