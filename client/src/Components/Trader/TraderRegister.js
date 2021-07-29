@@ -42,9 +42,9 @@ export default function TraderRegister(){
 
     }
     return (
-       <>
-       <div className="registerTraderContainer">
-       <Formik initialValues={initialValues} onSubmit={onSubmit}>
+        <>
+        <div className="registerTraderContainer">
+        <Formik initialValues={initialValues} onSubmit={onSubmit}>
        {/* validationSchema={validationSchema} */}
             <Form>
                 <label>Nom de la company : </label>
@@ -55,38 +55,38 @@ export default function TraderRegister(){
                     name="companyName"
                     placeholder="Company Name"
                 />
-                 <label>KBIS </label>
-                 <ErrorMessage name="companyName" component="span" />
+                <label>KBIS </label>
+                <ErrorMessage name="companyName" component="span" />
                 <Field 
                     autocomplete="off"
                     id="inputRegisterTrader"
                     name="kbis"
                     placeholder="kbis"
                 />
-                 <label>Devise </label>
+                <label>Devise </label>
                 <Field 
                     autocomplete="off"
                     id="inputRegisterTrader"
                     name="devise"
                 />
-                 <label>Contact Email </label>
-                 <ErrorMessage name="contactEmail" component="span" />
+                <label>Contact Email </label>
+                <ErrorMessage name="contactEmail" component="span" />
                 <Field 
                     autocomplete="off"
                     id="inputRegisterTrader"
                     name="contactEmail"
                     placeholder="abc@abc.fr"
                 />
-                 <label>Username </label>
-                 <ErrorMessage name="username" component="span" />
+                <label>Username </label>
+                <ErrorMessage name="username" component="span" />
                 <Field 
                     autocomplete="off"
                     id="inputRegisterTrader"
                     name="username"
                     placeholder="abc@abc.fr"
                 />
-                 <label>password </label>
-                 <ErrorMessage name="password" component="span" />
+                <label>password </label>
+                <ErrorMessage name="password" component="span" />
                 <Field 
                     autocomplete="off"
                     id="inputRegisterTrader"
@@ -94,8 +94,8 @@ export default function TraderRegister(){
                     placeholder="password"
                     type="password"
                 />
-                  <label>CreatedAt </label>
-                  <ErrorMessage name="createdAt" component="span" />
+                <label>CreatedAt </label>
+                <ErrorMessage name="createdAt" component="span" />
                 <Field 
                     autocomplete="off"
                     id="inputRegisterTrader"
@@ -103,8 +103,8 @@ export default function TraderRegister(){
                     placeholder="2020-12-21"
                     type="date"
                 />
-                  <label>Updated At </label>
-                  <ErrorMessage name="updatedAt" component="span" />
+                <label>Updated At </label>
+                <ErrorMessage name="updatedAt" component="span" />
                 <Field 
                     autocomplete="off"
                     id="inputRegisterTrader"
@@ -114,9 +114,9 @@ export default function TraderRegister(){
                 />
                 <button type="submit"> Envoyer </button>
             </Form>
-       </Formik>
-       </div>
-       </>
+        </Formik>
+        </div>
+        </>
     );
 }
 
